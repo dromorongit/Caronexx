@@ -48,6 +48,48 @@ function addToCart(button) {
     showNotification(`${productName} added to cart!`, 'success');
 }
 
+// Global update cart count function
+function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+    
+    // Update navigation cart count
+    const cartLink = document.querySelector('a[href="cart.html"]');
+    if (cartLink) {
+        const existingCount = cartLink.querySelector('.cart-count');
+        if (existingCount) {
+            existingCount.textContent = cartCount;
+        } else {
+            const countBadge = document.createElement('span');
+            countBadge.className = 'cart-count';
+            countBadge.style.cssText = `
+                position: absolute;
+                top: -8px;
+                right: -8px;
+                background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+                color: white;
+                border-radius: 50%;
+                width: 20px;
+                height: 20px;
+                font-size: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: bold;
+            `;
+            countBadge.textContent = cartCount;
+            cartLink.style.position = 'relative';
+            cartLink.appendChild(countBadge);
+        }
+    }
+    
+    // Update cart page count display
+    const cartCountElement = document.getElementById('cart-count');
+    if (cartCountElement) {
+        cartCountElement.textContent = `${cartCount} item${cartCount !== 1 ? 's' : ''} in your cart`;
+    }
+}
+
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
     
@@ -212,54 +254,12 @@ function initProductCards() {
 
 // Modern Cart Functionality
 function initCart() {
-    // Update cart count in navigation and cart page
-    function updateCartCount() {
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
-        
-        // Update navigation cart count
-        const cartLink = document.querySelector('a[href="cart.html"]');
-        if (cartLink) {
-            const existingCount = cartLink.querySelector('.cart-count');
-            if (existingCount) {
-                existingCount.textContent = cartCount;
-            } else {
-                const countBadge = document.createElement('span');
-                countBadge.className = 'cart-count';
-                countBadge.style.cssText = `
-                    position: absolute;
-                    top: -8px;
-                    right: -8px;
-                    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-                    color: white;
-                    border-radius: 50%;
-                    width: 20px;
-                    height: 20px;
-                    font-size: 12px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    font-weight: bold;
-                `;
-                countBadge.textContent = cartCount;
-                cartLink.style.position = 'relative';
-                cartLink.appendChild(countBadge);
-            }
-        }
-        
-        // Update cart page count display
-        const cartCountElement = document.getElementById('cart-count');
-        if (cartCountElement) {
-            cartCountElement.textContent = `${cartCount} item${cartCount !== 1 ? 's' : ''} in your cart`;
-        }
-    }
-    
     // Load cart items on cart page
     if (window.location.pathname.includes('cart.html')) {
         loadCartItems();
     }
     
-    // Load cart items - FIXED VERSION
+    // Load cart items
     function loadCartItems() {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
         const cartItemsList = document.getElementById('cart-items-list');
