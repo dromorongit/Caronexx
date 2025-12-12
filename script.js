@@ -212,11 +212,12 @@ function initProductCards() {
 
 // Modern Cart Functionality
 function initCart() {
-    // Update cart count in navigation
+    // Update cart count in navigation and cart page
     function updateCartCount() {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
         const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
         
+        // Update navigation cart count
         const cartLink = document.querySelector('a[href="cart.html"]');
         if (cartLink) {
             const existingCount = cartLink.querySelector('.cart-count');
@@ -244,6 +245,12 @@ function initCart() {
                 cartLink.style.position = 'relative';
                 cartLink.appendChild(countBadge);
             }
+        }
+        
+        // Update cart page count display
+        const cartCountElement = document.getElementById('cart-count');
+        if (cartCountElement) {
+            cartCountElement.textContent = `${cartCount} item${cartCount !== 1 ? 's' : ''} in your cart`;
         }
     }
     
@@ -299,12 +306,12 @@ function initCart() {
         updateCartCount();
     }
     
-    // Update cart totals
+    // Update cart totals - NO TAX VERSION
     function updateCartTotals() {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
         const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
         const shipping = subtotal > 900 ? 0 : 120; // Free shipping over ₵900
-        const tax = subtotal * 0.12; // 12.5% VAT
+        const tax = 0; // No tax charged
         const total = subtotal + shipping + tax;
         
         // Update cart page totals
