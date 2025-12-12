@@ -208,6 +208,7 @@
             transition: var(--transition);
             position: relative;
             overflow: hidden;
+            min-height: 80px;
         }
         
         .payment-option::before {
@@ -244,6 +245,7 @@
         .payment-icon {
             font-size: 1.5rem;
             color: var(--accent-gradient);
+            flex-shrink: 0;
         }
         
         .shipping-options {
@@ -264,6 +266,7 @@
             transition: var(--transition);
             position: relative;
             overflow: hidden;
+            min-height: 80px;
         }
         
         .shipping-option::before {
@@ -302,6 +305,8 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
         
         .shipping-price {
@@ -347,6 +352,9 @@
             overflow: hidden;
             font-size: 1.1rem;
             box-shadow: var(--shadow-light);
+            min-height: 60px;
+            width: 100%;
+            max-width: 400px;
         }
         
         .submit-btn::before {
@@ -414,16 +422,19 @@
             height: 60px;
             border-radius: 8px;
             object-fit: cover;
+            flex-shrink: 0;
         }
         
         .order-item-details {
             flex: 1;
+            min-width: 0;
         }
         
         .order-item-name {
             font-weight: 600;
             color: var(--text-primary);
             margin-bottom: 0.25rem;
+            word-wrap: break-word;
         }
         
         .order-item-quantity {
@@ -434,6 +445,7 @@
         .order-item-price {
             font-weight: 600;
             color: var(--text-primary);
+            flex-shrink: 0;
         }
         
         .summary-totals {
@@ -474,6 +486,7 @@
             margin-bottom: 1rem;
             color: var(--text-secondary);
             font-weight: 600;
+            flex-wrap: wrap;
         }
         
         .payment-icons {
@@ -494,24 +507,174 @@
             font-size: 1.2rem;
             box-shadow: var(--shadow-light);
         }
-        
+
+        /* Enhanced Mobile Styles */
         @media (max-width: 768px) {
             .checkout-container {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: 1.5rem;
+                margin-top: 1.5rem;
+            }
+            
+            .form-content {
+                padding: 1.5rem;
             }
             
             .form-grid {
                 grid-template-columns: 1fr;
+                gap: 1rem;
             }
             
             .payment-methods {
                 grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+            
+            .payment-option {
+                padding: 1.25rem;
+                min-height: 70px;
+            }
+            
+            .shipping-option {
+                padding: 1.25rem;
+                min-height: 70px;
             }
             
             .steps-container {
                 flex-direction: column;
                 align-items: center;
+                gap: 1rem;
+            }
+            
+            .step {
+                padding: 0.75rem 1.25rem;
+                font-size: 0.9rem;
+            }
+            
+            .order-summary-card {
+                position: relative;
+                top: auto;
+                order: -1;
+            }
+            
+            .checkout-steps {
+                padding: 1.5rem;
+                margin: 1rem auto;
+            }
+            
+            .checkout-hero {
+                padding: 2rem 1rem;
+            }
+            
+            .checkout-hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .checkout-hero p {
+                font-size: 0.95rem;
+            }
+            
+            .form-section h3 {
+                font-size: 1.1rem;
+                margin-bottom: 1.25rem;
+            }
+            
+            .form-floating input,
+            .form-floating select,
+            .form-floating textarea {
+                padding: 1.25rem 1rem 0.5rem;
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+            
+            .submit-btn {
+                padding: 1.25rem 2rem;
+                font-size: 1rem;
+                min-height: 55px;
+                width: 100%;
+            }
+            
+            .order-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.75rem;
+                padding: 1.25rem;
+            }
+            
+            .order-item-image {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .shipping-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.25rem;
+            }
+            
+            .security-badges {
+                padding: 1.25rem;
+            }
+            
+            .security-text {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .checkout-hero {
+                padding: 1.5rem 0.75rem;
+            }
+            
+            .checkout-hero h1 {
+                font-size: 1.6rem;
+            }
+            
+            .checkout-steps {
+                padding: 1.25rem;
+                margin: 0.75rem auto;
+            }
+            
+            .form-content {
+                padding: 1.25rem;
+            }
+            
+            .summary-content {
+                padding: 1.25rem;
+            }
+            
+            .payment-option,
+            .shipping-option {
+                padding: 1rem;
+                min-height: 65px;
+            }
+            
+            .payment-icon {
+                font-size: 1.25rem;
+            }
+            
+            .order-item-image {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .submit-btn {
+                padding: 1.125rem 1.5rem;
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Touch-friendly improvements for all screen sizes */
+        @media (hover: none) and (pointer: coarse) {
+            .payment-option,
+            .shipping-option,
+            .submit-btn {
+                min-height: 48px;
+            }
+            
+            .form-floating input,
+            .form-floating select,
+            .form-floating textarea {
+                min-height: 48px;
             }
         }
     </style>
@@ -593,41 +756,41 @@
                         <h3><i class="fas fa-truck"></i> Shipping Information</h3>
                         <div class="form-grid">
                             <div class="form-floating">
-                                <input type="text" id="first-name" name="first-name" required placeholder=" ">
+                                <input type="text" id="first-name" name="first-name" required placeholder=" " autocomplete="given-name">
                                 <label for="first-name"><i class="fas fa-user"></i> First Name</label>
                             </div>
                             <div class="form-floating">
-                                <input type="text" id="last-name" name="last-name" required placeholder=" ">
+                                <input type="text" id="last-name" name="last-name" required placeholder=" " autocomplete="family-name">
                                 <label for="last-name"><i class="fas fa-user"></i> Last Name</label>
                             </div>
                         </div>
                         
                         <div class="form-floating" style="margin-top: 1.5rem;">
-                            <input type="email" id="email" name="email" required placeholder=" ">
+                            <input type="email" id="email" name="email" required placeholder=" " autocomplete="email">
                             <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
                         </div>
                         
                         <div class="form-floating" style="margin-top: 1.5rem;">
-                            <input type="tel" id="phone" name="phone" required placeholder=" ">
+                            <input type="tel" id="phone" name="phone" required placeholder=" " autocomplete="tel">
                             <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
                         </div>
                         
                         <div class="form-floating" style="margin-top: 1.5rem;">
-                            <input type="text" id="address" name="address" required placeholder=" ">
+                            <input type="text" id="address" name="address" required placeholder=" " autocomplete="street-address">
                             <label for="address"><i class="fas fa-map-marker-alt"></i> Street Address</label>
                         </div>
                         
                         <div class="form-grid" style="margin-top: 1.5rem;">
                             <div class="form-floating">
-                                <input type="text" id="city" name="city" required placeholder=" ">
+                                <input type="text" id="city" name="city" required placeholder=" " autocomplete="address-level2">
                                 <label for="city"><i class="fas fa-city"></i> City</label>
                             </div>
                             <div class="form-floating">
-                                <input type="text" id="region" name="region" required placeholder=" ">
+                                <input type="text" id="region" name="region" required placeholder=" " autocomplete="address-level1">
                                 <label for="region"><i class="fas fa-map"></i> Region</label>
                             </div>
                             <div class="form-floating">
-                                <input type="text" id="postal" name="postal" required placeholder=" ">
+                                <input type="text" id="postal" name="postal" required placeholder=" " autocomplete="postal-code">
                                 <label for="postal"><i class="fas fa-mail-bulk"></i> Postal Code</label>
                             </div>
                         </div>
@@ -662,20 +825,20 @@
                         <div class="credit-card-form" id="credit-card-form">
                             <div class="form-grid">
                                 <div class="form-floating" style="grid-column: 1 / -1;">
-                                    <input type="text" id="card-number" name="card-number" placeholder=" " maxlength="19">
+                                    <input type="text" id="card-number" name="card-number" placeholder=" " maxlength="19" autocomplete="cc-number">
                                     <label for="card-number"><i class="fas fa-credit-card"></i> Card Number</label>
                                 </div>
                                 <div class="form-floating">
-                                    <input type="text" id="expiry" name="expiry" placeholder=" " maxlength="5">
+                                    <input type="text" id="expiry" name="expiry" placeholder=" " maxlength="5" autocomplete="cc-exp">
                                     <label for="expiry"><i class="fas fa-calendar"></i> MM/YY</label>
                                 </div>
                                 <div class="form-floating">
-                                    <input type="text" id="cvv" name="cvv" placeholder=" " maxlength="4">
+                                    <input type="text" id="cvv" name="cvv" placeholder=" " maxlength="4" autocomplete="cc-csc">
                                     <label for="cvv"><i class="fas fa-shield-alt"></i> CVV</label>
                                 </div>
                             </div>
                             <div class="form-floating" style="margin-top: 1.5rem;">
-                                <input type="text" id="card-name" name="card-name" placeholder=" ">
+                                <input type="text" id="card-name" name="card-name" placeholder=" " autocomplete="cc-name">
                                 <label for="card-name"><i class="fas fa-user"></i> Name on Card</label>
                             </div>
                         </div>
@@ -690,7 +853,7 @@
                                 <div class="shipping-details">
                                     <div class="shipping-header">
                                         <span><i class="fas fa-truck"></i> Standard Shipping</span>
-                                        <span class="shipping-price">₵120.00</span>
+                                        <span class="shipping-price">₵0.00</span>
                                     </div>
                                     <div class="shipping-time">5-7 business days</div>
                                 </div>
@@ -700,7 +863,7 @@
                                 <div class="shipping-details">
                                     <div class="shipping-header">
                                         <span><i class="fas fa-shipping-fast"></i> Express Shipping</span>
-                                        <span class="shipping-price">₵300.00</span>
+                                        <span class="shipping-price">₵0.00</span>
                                     </div>
                                     <div class="shipping-time">2-3 business days</div>
                                 </div>
@@ -710,7 +873,7 @@
                                 <div class="shipping-details">
                                     <div class="shipping-header">
                                         <span><i class="fas fa-rocket"></i> Overnight Shipping</span>
-                                        <span class="shipping-price">₵600.00</span>
+                                        <span class="shipping-price">₵0.00</span>
                                     </div>
                                     <div class="shipping-time">Next business day</div>
                                 </div>
@@ -721,8 +884,8 @@
                     <!-- Submit Section -->
                     <div class="submit-section">
                         <div style="margin-bottom: 1.5rem;">
-                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-                                <input type="checkbox" required style="margin: 0;">
+                            <label style="display: flex; align-items: flex-start; gap: 0.5rem; cursor: pointer; line-height: 1.4;">
+                                <input type="checkbox" required style="margin: 0.125rem 0 0 0; flex-shrink: 0;">
                                 <span>I agree to the <a href="#" style="color: var(--accent-gradient); text-decoration: underline;">Terms and Conditions</a> and <a href="#" style="color: var(--accent-gradient); text-decoration: underline;">Privacy Policy</a></span>
                             </label>
                         </div>
@@ -753,10 +916,10 @@
                         </div>
                         <div class="total-row">
                             <span>Shipping:</span>
-                            <span>₵<span id="shipping-cost">120</span></span>
+                            <span>₵<span id="shipping-cost">0</span></span>
                         </div>
                         <div class="total-row">
-                            <span>Tax (12.5%):</span>
+                            <span>Tax:</span>
                             <span>₵<span id="tax">0</span></span>
                         </div>
                         <div class="total-row final">
@@ -782,7 +945,7 @@
                                 <i class="fab fa-cc-amex" style="color: #006fcf;"></i>
                             </div>
                             <div class="payment-icon-badge">
-                                <i class="fab fa-paypal" style="color: #003087;"></i>
+                                <i class="fab fa-cc-paypal" style="color: #003087;"></i>
                             </div>
                         </div>
                     </div>
@@ -835,12 +998,13 @@
             
             // Update shipping cost
             const shippingCosts = {
-                'standard': 120,
-                'express': 300,
-                'overnight': 600
+                'standard': 0,
+                'express': 0,
+                'overnight': 0
             };
             
             document.getElementById('shipping-cost').textContent = shippingCosts[method];
+            updateCheckoutTotals(); // Recalculate totals
         }
         
         // Initialize selections on page load
