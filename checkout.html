@@ -82,7 +82,7 @@
         
         .checkout-container {
             display: grid;
-            grid-template-columns: 2fr 1fr;
+            grid-template-columns: 1fr 2fr;
             gap: 3rem;
             margin-top: 3rem;
         }
@@ -324,212 +324,6 @@
             color: white;
             font-size: 12px;
             font-weight: bold;
-        }
-        
-        .shipping-options {
-            display: grid;
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-        
-        .shipping-option {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            padding: 2rem;
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 100%);
-            border: 2px solid transparent;
-            border-radius: 16px;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-            min-height: 120px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.12);
-        }
-        
-        .shipping-option::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            transform: scaleY(0);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        
-        .shipping-option::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(240, 147, 251, 0.1) 0%, rgba(245, 87, 108, 0.1) 100%);
-            opacity: 0;
-            transition: all 0.4s ease;
-            border-radius: 16px;
-        }
-        
-        .shipping-option:hover {
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.8) 100%);
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(240, 147, 251, 0.2);
-            border-color: rgba(240, 147, 251, 0.3);
-        }
-        
-        .shipping-option:hover::after {
-            opacity: 1;
-        }
-        
-        .shipping-option.selected {
-            border-color: #f093fb;
-            background: linear-gradient(145deg, rgba(240, 147, 251, 0.15) 0%, rgba(245, 87, 108, 0.1) 100%);
-            transform: translateY(-4px) scale(1.01);
-            box-shadow: 0 15px 30px rgba(240, 147, 251, 0.25);
-        }
-        
-        .shipping-option.selected::before {
-            transform: scaleY(1);
-        }
-        
-        .shipping-option input[type="radio"] {
-            position: absolute;
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-        
-        .shipping-icon {
-            font-size: 2rem;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            flex-shrink: 0;
-            z-index: 2;
-            position: relative;
-        }
-        
-        .shipping-details {
-            flex: 1;
-            z-index: 2;
-            position: relative;
-        }
-        
-        .shipping-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.75rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-        
-        .shipping-title {
-            font-weight: 600;
-            font-size: 1.2rem;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .shipping-price {
-            font-weight: 700;
-            font-size: 1.3rem;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .shipping-description {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            margin-bottom: 0.75rem;
-            line-height: 1.4;
-        }
-        
-        .shipping-time {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            background: rgba(240, 147, 251, 0.1);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            border: 1px solid rgba(240, 147, 251, 0.2);
-        }
-        
-        .shipping-time i {
-            color: #f093fb;
-        }
-        
-        .shipping-checkmark {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            width: 20px;
-            height: 20px;
-            border: 2px solid var(--glass-border);
-            border-radius: 50%;
-            background: white;
-            transition: all 0.3s ease;
-            z-index: 2;
-        }
-        
-        .shipping-option.selected .shipping-checkmark {
-            border-color: #f093fb;
-            background: #f093fb;
-        }
-        
-        .shipping-option.selected .shipping-checkmark::after {
-            content: '✓';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-size: 12px;
-            font-weight: bold;
-        }
-        
-        .shipping-features {
-            display: flex;
-            gap: 1rem;
-            margin-top: 0.75rem;
-            flex-wrap: wrap;
-        }
-        
-        .shipping-feature {
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            background: rgba(255, 255, 255, 0.5);
-            padding: 0.25rem 0.75rem;
-            border-radius: 12px;
-            border: 1px solid var(--glass-border);
-        }
-        
-        .shipping-feature i {
-            color: #f093fb;
-            font-size: 0.7rem;
-        }
-        
-        .credit-card-form {
-            display: none;
-            margin-top: 2rem;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 12px;
-            border: 1px solid var(--glass-border);
         }
         
         .submit-section {
@@ -933,38 +727,6 @@
                 font-size: 0.85rem;
             }
             
-            .shipping-option {
-                padding: 1.5rem;
-                min-height: 100px;
-                gap: 1rem;
-            }
-            
-            .shipping-icon {
-                font-size: 1.5rem;
-            }
-            
-            .shipping-title {
-                font-size: 1.1rem;
-            }
-            
-            .shipping-description {
-                font-size: 0.9rem;
-            }
-            
-            .shipping-time {
-                font-size: 0.85rem;
-                padding: 0.4rem 0.8rem;
-            }
-            
-            .shipping-features {
-                gap: 0.5rem;
-            }
-            
-            .shipping-feature {
-                font-size: 0.75rem;
-                padding: 0.2rem 0.6rem;
-            }
-            
             .submit-section {
                 padding: 2rem;
             }
@@ -1052,12 +814,6 @@
                 height: 80px;
             }
             
-            .shipping-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.25rem;
-            }
-            
             .security-badges {
                 padding: 1.25rem;
             }
@@ -1089,8 +845,7 @@
                 padding: 1.25rem;
             }
             
-            .payment-option,
-            .shipping-option {
+            .payment-option {
                 padding: 1rem;
                 min-height: 65px;
             }
@@ -1113,7 +868,6 @@
         /* Touch-friendly improvements for all screen sizes */
         @media (hover: none) and (pointer: coarse) {
             .payment-option,
-            .shipping-option,
             .submit-btn {
                 min-height: 48px;
             }
@@ -1190,121 +944,6 @@
 
         <!-- Main Checkout Container -->
         <div class="checkout-container">
-            <!-- Checkout Form -->
-            <div class="checkout-form-section fade-in">
-                <div class="form-header">
-                    <h2><i class="fas fa-user-edit"></i> Complete Your Order</h2>
-                    <p>Please fill in your information to complete the purchase</p>
-                </div>
-                
-                <div class="form-content">
-                    <!-- Shipping Information -->
-                    <div class="form-section">
-                        <h3><i class="fas fa-truck"></i> Shipping Information</h3>
-                        <div class="form-grid">
-                            <div class="form-floating">
-                                <input type="text" id="first-name" name="first-name" required placeholder=" " autocomplete="given-name">
-                                <label for="first-name"><i class="fas fa-user"></i> First Name</label>
-                            </div>
-                            <div class="form-floating">
-                                <input type="text" id="last-name" name="last-name" required placeholder=" " autocomplete="family-name">
-                                <label for="last-name"><i class="fas fa-user"></i> Last Name</label>
-                            </div>
-                        </div>
-                        
-                        <div class="form-floating" style="margin-top: 1.5rem;">
-                            <input type="email" id="email" name="email" placeholder=" " autocomplete="email">
-                            <label for="email"><i class="fas fa-envelope"></i> Email Address (Optional)</label>
-                        </div>
-                        
-                        <div class="form-floating" style="margin-top: 1.5rem;">
-                            <input type="tel" id="phone" name="phone" required placeholder=" " autocomplete="tel">
-                            <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
-                        </div>
-                        
-                        <div class="form-floating" style="margin-top: 1.5rem;">
-                            <input type="text" id="address" name="address" required placeholder=" " autocomplete="street-address">
-                            <label for="address"><i class="fas fa-map-marker-alt"></i> Street Address</label>
-                        </div>
-                        
-                        <div class="form-grid" style="margin-top: 1.5rem;">
-                            <div class="form-floating">
-                                <input type="text" id="city" name="city" required placeholder=" " autocomplete="address-level2">
-                                <label for="city"><i class="fas fa-city"></i> City</label>
-                            </div>
-                            <div class="form-floating">
-                                <input type="text" id="country" name="country" required placeholder=" " autocomplete="country-name">
-                                <label for="country"><i class="fas fa-globe"></i> Country</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Payment Information -->
-                    <div class="form-section">
-                        <h3><i class="fas fa-credit-card"></i> Payment Method</h3>
-                        <div class="payment-methods">
-                            <div class="payment-option" onclick="selectPayment('mobile-money')">
-                                <input type="radio" name="payment" value="mobile-money" id="mobile-money">
-                                <div class="payment-checkmark"></div>
-                                <i class="fas fa-mobile-alt payment-icon"></i>
-                                <div class="payment-text">
-                                    <div class="payment-title">Mobile Money</div>
-                                    <div class="payment-description">Fast and convenient mobile payment solutions</div>
-                                </div>
-                            </div>
-                            <div class="payment-option" onclick="selectPayment('cash')">
-                                <input type="radio" name="payment" value="cash" id="cash">
-                                <div class="payment-checkmark"></div>
-                                <i class="fas fa-money-bill payment-icon"></i>
-                                <div class="payment-text">
-                                    <div class="payment-title">Cash on Delivery</div>
-                                    <div class="payment-description">Pay with cash when your order is delivered</div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-
-
-                    <!-- Submit Section -->
-                    <div class="submit-section">
-                        <div class="terms-section">
-                            <div class="terms-title">
-                                <i class="fas fa-shield-alt"></i>
-                                Terms & Conditions
-                            </div>
-                            <label class="terms-checkbox">
-                                <input type="checkbox" required>
-                                <div class="checkbox-custom"></div>
-                                <div class="terms-text">
-                                    I agree to the <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a>.
-                                    I understand that by placing this order, I am entering into a legally binding agreement.
-                                </div>
-                            </label>
-                        </div>
-                        
-                        <button type="submit" class="submit-btn">
-                            <i class="fas fa-lock"></i> Place Secure Order
-                        </button>
-                        
-                        <div class="security-info">
-                            <div class="security-item">
-                                <i class="fas fa-shield-alt"></i>
-                                <span>256-bit SSL Secured</span>
-                            </div>
-                            <div class="security-item">
-                                <i class="fas fa-lock"></i>
-                                <span>Safe & Secure</span>
-                            </div>
-                            <div class="security-item">
-                                <i class="fas fa-credit-card"></i>
-                                <span>Encrypted Payment</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <!-- Order Summary -->
             <div class="order-summary-card fade-in">
                 <div class="summary-header">
@@ -1355,6 +994,115 @@
                             </div>
                             <div class="payment-icon-badge">
                                 <i class="fab fa-cc-paypal" style="color: #003087;"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Checkout Form -->
+            <div class="checkout-form-section fade-in">
+                <div class="form-header">
+                    <h2><i class="fas fa-user-edit"></i> Complete Your Order</h2>
+                    <p>Please fill in your information to complete the purchase</p>
+                </div>
+                
+                <div class="form-content">
+                    <!-- Shipping Information -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-truck"></i> Shipping Information</h3>
+                        <div class="form-grid">
+                            <div class="form-floating">
+                                <input type="text" id="first-name" name="first-name" required placeholder=" " autocomplete="given-name">
+                                <label for="first-name"><i class="fas fa-user"></i> First Name</label>
+                            </div>
+                            <div class="form-floating">
+                                <input type="text" id="last-name" name="last-name" required placeholder=" " autocomplete="family-name">
+                                <label for="last-name"><i class="fas fa-user"></i> Last Name</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-floating" style="margin-top: 1.5rem;">
+                            <input type="email" id="email" name="email" placeholder=" " autocomplete="email">
+                            <label for="email"><i class="fas fa-envelope"></i> Email Address (Optional)</label>
+                        </div>
+                        
+                        <div class="form-floating" style="margin-top: 1.5rem;">
+                            <input type="tel" id="phone" name="phone" required placeholder=" " autocomplete="tel">
+                            <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
+                        </div>
+                        
+                        <div class="form-floating" style="margin-top: 1.5rem;">
+                            <input type="text" id="address" name="address" required placeholder=" " autocomplete="street-address">
+                            <label for="address"><i class="fas fa-map-marker-alt"></i> Street Address</label>
+                        </div>
+                        
+                        <div class="form-grid" style="margin-top: 1.5rem;">
+                            <div class="form-floating">
+                                <input type="text" id="city" name="city" required placeholder=" " autocomplete="address-level2">
+                                <label for="city"><i class="fas fa-city"></i> City</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Information -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-credit-card"></i> Payment Method</h3>
+                        <div class="payment-methods">
+                            <div class="payment-option" onclick="selectPayment('mobile-money')">
+                                <input type="radio" name="payment" value="mobile-money" id="mobile-money">
+                                <div class="payment-checkmark"></div>
+                                <i class="fas fa-mobile-alt payment-icon"></i>
+                                <div class="payment-text">
+                                    <div class="payment-title">Mobile Money</div>
+                                    <div class="payment-description">Fast and convenient mobile payment solutions</div>
+                                </div>
+                            </div>
+                            <div class="payment-option" onclick="selectPayment('cash')">
+                                <input type="radio" name="payment" value="cash" id="cash">
+                                <div class="payment-checkmark"></div>
+                                <i class="fas fa-money-bill payment-icon"></i>
+                                <div class="payment-text">
+                                    <div class="payment-title">Cash on Delivery</div>
+                                    <div class="payment-description">Pay with cash when your order is delivered</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Section -->
+                    <div class="submit-section">
+                        <div class="terms-section">
+                            <div class="terms-title">
+                                <i class="fas fa-shield-alt"></i>
+                                Terms & Conditions
+                            </div>
+                            <label class="terms-checkbox">
+                                <input type="checkbox" required>
+                                <div class="checkbox-custom"></div>
+                                <div class="terms-text">
+                                    I agree to the <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a>.
+                                    I understand that by placing this order, I am entering into a legally binding agreement.
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-lock"></i> Place Secure Order
+                        </button>
+                        
+                        <div class="security-info">
+                            <div class="security-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>256-bit SSL Secured</span>
+                            </div>
+                            <div class="security-item">
+                                <i class="fas fa-lock"></i>
+                                <span>Safe & Secure</span>
+                            </div>
+                            <div class="security-item">
+                                <i class="fas fa-credit-card"></i>
+                                <span>Encrypted Payment</span>
                             </div>
                         </div>
                     </div>
