@@ -3,15 +3,31 @@
 // Global add to cart function
 function addToCart(button) {
     const card = button.closest('.product-card');
-    const productName = card.querySelector('h3').textContent;
-    const productPrice = card.querySelector('p').textContent.replace('₵', '');
+    const productName = card.querySelector('h3').textContent.trim();
+    
+    // Robust price extraction
+    const priceElement = card.querySelector('p');
+    let productPrice = priceElement.textContent.trim();
+    
+    // Remove currency symbol and any non-numeric characters except decimal point
+    productPrice = productPrice.replace(/[₵$,\s]/g, '');
+    
+    // Convert to float, ensure it's a valid number
+    const numericPrice = parseFloat(productPrice);
+    
+    if (isNaN(numericPrice) || numericPrice <= 0) {
+        console.error('Invalid price detected:', productPrice);
+        showNotification('Error: Invalid product price', 'error');
+        return;
+    }
+    
     const productImg = card.querySelector('img').src;
     
     // Create cart item
     const cartItem = {
         id: Date.now(),
         name: productName,
-        price: parseFloat(productPrice),
+        price: numericPrice,
         image: productImg,
         quantity: 1
     };
@@ -306,11 +322,11 @@ function initCart() {
         updateCartCount();
     }
     
-    // Update cart totals - NO TAX VERSION
+    // Update cart totals - NO SHIPPING ON CART PAGE
     function updateCartTotals() {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
         const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-        const shipping = subtotal > 900 ? 0 : 120; // Free shipping over ₵900
+        const shipping = 0; // No shipping fees on cart page
         const tax = 0; // No tax charged
         const total = subtotal + shipping + tax;
         
@@ -325,7 +341,7 @@ function initCart() {
         if (taxElement) taxElement.textContent = tax.toFixed(2);
         if (totalElement) totalElement.textContent = total.toFixed(2);
         
-        // Update checkout totals if on checkout page
+        // Update checkout totals if on checkout page - NO TAX ON CHECKOUT
         if (document.getElementById('grand-total')) {
             document.getElementById('subtotal').textContent = subtotal.toFixed(2);
             document.getElementById('shipping-cost').textContent = shipping.toFixed(2);
@@ -604,7 +620,7 @@ function initModernInteractions() {
             // Update shipping cost in order summary
             const shippingCost = document.getElementById('shipping-cost');
             if (shippingCost) {
-                const costs = { standard: 10, express: 25, overnight: 50 };
+                const costs = { standard: 0, express: 0, overnight: 0 }; // No shipping costs
                 shippingCost.textContent = costs[this.value];
             }
         });
