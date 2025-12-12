@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Caronexx Caroche</title>
+    <meta name="description" content="Complete your purchase at Caronexx Caroche.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Caronexx Caroche</h1>
+        </div>
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#corsets">Corsets</a></li>
+                <li><a href="index.html#lingeries">Lingeries</a></li>
+                <li><a href="index.html#mens-briefs">Men’s Briefs</a></li>
+                <li><a href="index.html#underwears">Underwears</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="cart.html">Cart</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="checkout">
+            <h2>Checkout</h2>
+            <div class="checkout-container">
+                <form class="checkout-form">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone" required>
+
+                    <label for="address">Delivery Address</label>
+                    <textarea id="address" name="address" rows="3" required></textarea>
+
+                    <label for="payment">Payment Method</label>
+                    <select id="payment" name="payment" required>
+                        <option value="credit-card">Credit Card</option>
+                        <option value="paypal">PayPal</option>
+                        <option value="cash-on-delivery">Cash on Delivery</option>
+                    </select>
+
+                    <button type="submit">Place Order</button>
+                </form>
+
+                <div class="order-summary">
+                    <h3>Order Summary</h3>
+                    <div id="order-items">
+                        <!-- Order items will be populated by JS -->
+                    </div>
+                    <p>Subtotal: $<span id="subtotal">0</span></p>
+                    <p>Shipping: $<span id="shipping">10</span></p>
+                    <p><strong>Grand Total: $<span id="grand-total">0</span></strong></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Caronexx Caroche © 2025. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#" aria-label="Facebook">FB</a>
+            <a href="#" aria-label="Instagram">IG</a>
+            <a href="#" aria-label="TikTok">TT</a>
+            <a href="#" aria-label="WhatsApp">WA</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
