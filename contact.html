@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - Caronexx Caroche</title>
-    <meta name="description" content="Get in touch with Caronexx Caroche for inquiries about our fashion products.">
+    <title>Contact Us - Caronexx Caroche</title>
+    <meta name="description" content="Get in touch with Caronexx Caroche for inquiries about our premium fashion products. We're here to help with any questions.">
+    <meta name="keywords" content="contact, fashion, support, Caronexx Caroche, customer service">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -14,13 +17,13 @@
         </div>
         <nav>
             <ul class="menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#corsets">Corsets</a></li>
-                <li><a href="index.html#lingeries">Lingeries</a></li>
-                <li><a href="index.html#mens-briefs">Men’s Briefs</a></li>
-                <li><a href="index.html#underwears">Underwears</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="cart.html">Cart</a></li>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="index.html#corsets"><i class="fas fa-gem"></i> Corsets</a></li>
+                <li><a href="index.html#lingeries"><i class="fas fa-heart"></i> Lingeries</a></li>
+                <li><a href="index.html#mens-briefs"><i class="fas fa-male"></i> Men's Briefs</a></li>
+                <li><a href="index.html#underwears"><i class="fas fa-tshirt"></i> Underwears</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li><a href="cart.html"><i class="fas fa-shopping-cart"></i> Cart</a></li>
             </ul>
             <div class="hamburger">
                 <span></span>
@@ -31,33 +34,112 @@
     </header>
 
     <main>
-        <section class="contact-form">
-            <h2>Contact Us</h2>
+        <!-- Hero Section for Contact -->
+        <section class="hero fade-in">
+            <h1><i class="fas fa-envelope-open-text"></i> Get In Touch</h1>
+            <p>We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+        </section>
+
+        <!-- Contact Form Section -->
+        <section class="contact-form fade-in">
+            <h2><i class="fas fa-comments"></i> Send Us a Message</h2>
             <form action="#" method="post">
-                <label for="full-name">Full Name</label>
-                <input type="text" id="full-name" name="full-name" required>
+                <div class="form-group">
+                    <label for="full-name"><i class="fas fa-user"></i> Full Name</label>
+                    <input type="text" id="full-name" name="full-name" required placeholder="Enter your full name">
+                </div>
 
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
+                <div class="form-group">
+                    <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="Enter your email address">
+                </div>
 
-                <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" name="phone" required>
+                <div class="form-group">
+                    <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+                </div>
 
-                <label for="message">Message</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
+                <div class="form-group">
+                    <label for="subject"><i class="fas fa-tag"></i> Subject</label>
+                    <select id="subject" name="subject" required>
+                        <option value="">Select a subject</option>
+                        <option value="product-inquiry">Product Inquiry</option>
+                        <option value="order-status">Order Status</option>
+                        <option value="size-guide">Size Guide</option>
+                        <option value="return-exchange">Return/Exchange</option>
+                        <option value="general">General Question</option>
+                        <option value="collaboration">Business Collaboration</option>
+                    </select>
+                </div>
 
-                <button type="submit">Send Message</button>
+                <div class="form-group">
+                    <label for="message"><i class="fas fa-comment-alt"></i> Message</label>
+                    <textarea id="message" name="message" rows="6" required placeholder="Tell us how we can help you..."></textarea>
+                </div>
+
+                <button type="submit">
+                    <i class="fas fa-paper-plane"></i> Send Message
+                </button>
             </form>
+        </section>
+
+        <!-- Contact Information Section -->
+        <section class="contact-info fade-in">
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <h2><i class="fas fa-info-circle"></i> Contact Information</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                    <div class="product-card">
+                        <i class="fas fa-map-marker-alt" style="font-size: 2rem; color: #4facfe; margin-bottom: 1rem;"></i>
+                        <h3>Visit Our Store</h3>
+                        <p>123 Fashion Avenue<br>Design District<br>New York, NY 10001</p>
+                    </div>
+                    <div class="product-card">
+                        <i class="fas fa-phone-alt" style="font-size: 2rem; color: #4facfe; margin-bottom: 1rem;"></i>
+                        <h3>Call Us</h3>
+                        <p>+1 (555) 123-4567<br>Monday - Friday<br>9:00 AM - 6:00 PM EST</p>
+                    </div>
+                    <div class="product-card">
+                        <i class="fas fa-envelope" style="font-size: 2rem; color: #4facfe; margin-bottom: 1rem;"></i>
+                        <h3>Email Us</h3>
+                        <p>info@caronexxcaroche.com<br>support@caronexxcaroche.com<br>We respond within 24 hours</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section fade-in">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2 style="text-align: center; margin-bottom: 2rem;"><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
+                <div style="display: grid; gap: 1rem;">
+                    <div class="product-card" style="text-align: left;">
+                        <h3><i class="fas fa-shipping-fast"></i> What are your shipping options?</h3>
+                        <p>We offer standard shipping (5-7 business days), express shipping (2-3 business days), and overnight shipping. All orders over $75 qualify for free standard shipping.</p>
+                    </div>
+                    <div class="product-card" style="text-align: left;">
+                        <h3><i class="fas fa-undo"></i> What is your return policy?</h3>
+                        <p>We offer a 30-day return policy for all items in original condition. Items must be unworn and have all original tags attached.</p>
+                    </div>
+                    <div class="product-card" style="text-align: left;">
+                        <h3><i class="fas fa-ruler-combined"></i> How do I find my size?</h3>
+                        <p>Each product page includes a detailed size guide. You can also contact us for personalized sizing assistance.</p>
+                    </div>
+                    <div class="product-card" style="text-align: left;">
+                        <h3><i class="fas fa-credit-card"></i> What payment methods do you accept?</h3>
+                        <p>We accept all major credit cards (Visa, MasterCard, American Express), PayPal, and Apple Pay for secure transactions.</p>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
     <footer>
-        <p>Caronexx Caroche © 2025. All rights reserved.</p>
+        <p>&copy; 2025 Caronexx Caroche. All rights reserved. | Crafted with <i class="fas fa-heart" style="color: #f5576c;"></i> for fashion lovers</p>
         <div class="social-links">
-            <a href="#" aria-label="Facebook">FB</a>
-            <a href="#" aria-label="Instagram">IG</a>
-            <a href="#" aria-label="TikTok">TT</a>
-            <a href="#" aria-label="WhatsApp">WA</a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         </div>
     </footer>
 

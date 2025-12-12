@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - Caronexx Caroche</title>
-    <meta name="description" content="Complete your purchase at Caronexx Caroche.">
+    <meta name="description" content="Complete your purchase at Caronexx Caroche. Secure and easy checkout process for all your fashion needs.">
+    <meta name="keywords" content="checkout, secure payment, fashion, Caronexx Caroche">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -14,13 +17,13 @@
         </div>
         <nav>
             <ul class="menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#corsets">Corsets</a></li>
-                <li><a href="index.html#lingeries">Lingeries</a></li>
-                <li><a href="index.html#mens-briefs">Men’s Briefs</a></li>
-                <li><a href="index.html#underwears">Underwears</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="cart.html">Cart</a></li>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="index.html#corsets"><i class="fas fa-gem"></i> Corsets</a></li>
+                <li><a href="index.html#lingeries"><i class="fas fa-heart"></i> Lingeries</a></li>
+                <li><a href="index.html#mens-briefs"><i class="fas fa-male"></i> Men's Briefs</a></li>
+                <li><a href="index.html#underwears"><i class="fas fa-tshirt"></i> Underwears</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li><a href="cart.html"><i class="fas fa-shopping-cart"></i> Cart</a></li>
             </ul>
             <div class="hamburger">
                 <span></span>
@@ -31,52 +34,222 @@
     </header>
 
     <main>
-        <section class="checkout">
-            <h2>Checkout</h2>
-            <div class="checkout-container">
-                <form class="checkout-form">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
+        <!-- Hero Section for Checkout -->
+        <section class="hero fade-in">
+            <h1><i class="fas fa-credit-card"></i> Secure Checkout</h1>
+            <p>Complete your order with our secure and encrypted checkout process.</p>
+        </section>
 
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
+        <!-- Checkout Process Steps -->
+        <section class="checkout-steps fade-in" style="max-width: 800px; margin: 0 auto 2rem;">
+            <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem;">
+                <div style="display: flex; align-items: center; gap: 0.5rem; padding: 1rem; background: var(--accent-gradient); color: white; border-radius: 50px;">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Cart</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.5rem; padding: 1rem; background: var(--primary-gradient); color: white; border-radius: 50px;">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Checkout</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.5rem; padding: 1rem; background: rgba(255, 255, 255, 0.1); color: var(--text-light); border-radius: 50px;">
+                    <i class="fas fa-check"></i>
+                    <span>Complete</span>
+                </div>
+            </div>
+        </section>
 
-                    <label for="phone">Phone</label>
-                    <input type="tel" id="phone" name="phone" required>
-
-                    <label for="address">Delivery Address</label>
-                    <textarea id="address" name="address" rows="3" required></textarea>
-
-                    <label for="payment">Payment Method</label>
-                    <select id="payment" name="payment" required>
-                        <option value="credit-card">Credit Card</option>
-                        <option value="paypal">PayPal</option>
-                        <option value="cash-on-delivery">Cash on Delivery</option>
-                    </select>
-
-                    <button type="submit">Place Order</button>
-                </form>
-
-                <div class="order-summary">
-                    <h3>Order Summary</h3>
-                    <div id="order-items">
-                        <!-- Order items will be populated by JS -->
+        <!-- Checkout Container -->
+        <section class="checkout-container fade-in">
+            <!-- Checkout Form -->
+            <div class="checkout-form">
+                <h2><i class="fas fa-user-edit"></i> Shipping Information</h2>
+                <form action="#" method="post">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label for="first-name"><i class="fas fa-user"></i> First Name</label>
+                            <input type="text" id="first-name" name="first-name" required placeholder="Enter your first name">
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name"><i class="fas fa-user"></i> Last Name</label>
+                            <input type="text" id="last-name" name="last-name" required placeholder="Enter your last name">
+                        </div>
                     </div>
-                    <p>Subtotal: $<span id="subtotal">0</span></p>
-                    <p>Shipping: $<span id="shipping">10</span></p>
-                    <p><strong>Grand Total: $<span id="grand-total">0</span></strong></p>
+
+                    <div class="form-group">
+                        <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
+                        <input type="email" id="email" name="email" required placeholder="Enter your email address">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address"><i class="fas fa-map-marker-alt"></i> Street Address</label>
+                        <input type="text" id="address" name="address" required placeholder="Enter your street address">
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label for="city"><i class="fas fa-city"></i> City</label>
+                            <input type="text" id="city" name="city" required placeholder="Enter your city">
+                        </div>
+                        <div class="form-group">
+                            <label for="state"><i class="fas fa-map"></i> State</label>
+                            <input type="text" id="state" name="state" required placeholder="State">
+                        </div>
+                        <div class="form-group">
+                            <label for="zip"><i class="fas fa-mail-bulk"></i> ZIP Code</label>
+                            <input type="text" id="zip" name="zip" required placeholder="ZIP">
+                        </div>
+                    </div>
+
+                    <h2 style="margin-top: 2rem;"><i class="fas fa-credit-card"></i> Payment Information</h2>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-credit-card"></i> Payment Method</label>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-top: 0.5rem;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--glass-border); border-radius: 8px; cursor: pointer; transition: var(--transition);">
+                                <input type="radio" name="payment" value="credit-card" required style="margin: 0;">
+                                <i class="fas fa-credit-card"></i> Credit Card
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--glass-border); border-radius: 8px; cursor: pointer; transition: var(--transition);">
+                                <input type="radio" name="payment" value="paypal" style="margin: 0;">
+                                <i class="fab fa-paypal"></i> PayPal
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--glass-border); border-radius: 8px; cursor: pointer; transition: var(--transition);">
+                                <input type="radio" name="payment" value="apple-pay" style="margin: 0;">
+                                <i class="fab fa-apple-pay"></i> Apple Pay
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--glass-border); border-radius: 8px; cursor: pointer; transition: var(--transition);">
+                                <input type="radio" name="payment" value="cash-on-delivery" style="margin: 0;">
+                                <i class="fas fa-money-bill"></i> Cash on Delivery
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="credit-card-form" style="display: none;">
+                        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1rem;">
+                            <div class="form-group">
+                                <label for="card-number"><i class="fas fa-credit-card"></i> Card Number</label>
+                                <input type="text" id="card-number" name="card-number" placeholder="1234 5678 9012 3456" maxlength="19">
+                            </div>
+                            <div class="form-group">
+                                <label for="cvv"><i class="fas fa-shield-alt"></i> CVV</label>
+                                <input type="text" id="cvv" name="cvv" placeholder="123" maxlength="4">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="card-name"><i class="fas fa-user"></i> Name on Card</label>
+                            <input type="text" id="card-name" name="card-name" placeholder="Enter name as shown on card">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-truck"></i> Shipping Method</label>
+                        <div style="display: grid; gap: 0.5rem; margin-top: 0.5rem;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--glass-border); border-radius: 8px; cursor: pointer; transition: var(--transition);">
+                                <input type="radio" name="shipping" value="standard" checked style="margin: 0;">
+                                <div style="flex: 1;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <span><i class="fas fa-truck"></i> Standard Shipping</span>
+                                        <span>$10.00</span>
+                                    </div>
+                                    <small style="color: var(--text-secondary);">5-7 business days</small>
+                                </div>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--glass-border); border-radius: 8px; cursor: pointer; transition: var(--transition);">
+                                <input type="radio" name="shipping" value="express" style="margin: 0;">
+                                <div style="flex: 1;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <span><i class="fas fa-shipping-fast"></i> Express Shipping</span>
+                                        <span>$25.00</span>
+                                    </div>
+                                    <small style="color: var(--text-secondary);">2-3 business days</small>
+                                </div>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--glass-border); border-radius: 8px; cursor: pointer; transition: var(--transition);">
+                                <input type="radio" name="shipping" value="overnight" style="margin: 0;">
+                                <div style="flex: 1;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <span><i class="fas fa-rocket"></i> Overnight Shipping</span>
+                                        <span>$50.00</span>
+                                    </div>
+                                    <small style="color: var(--text-secondary);">Next business day</small>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="checkbox" required style="margin: 0;">
+                            <span>I agree to the <a href="#" style="color: #4facfe; text-decoration: underline;">Terms and Conditions</a> and <a href="#" style="color: #4facfe; text-decoration: underline;">Privacy Policy</a></span>
+                        </label>
+                    </div>
+
+                    <button type="submit">
+                        <i class="fas fa-lock"></i> Place Secure Order
+                    </button>
+                </form>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="order-summary">
+                <h3><i class="fas fa-clipboard-list"></i> Order Summary</h3>
+                <div id="order-items">
+                    <!-- Order items will be populated by JavaScript -->
+                    <div style="text-align: center; padding: 2rem; color: var(--text-secondary);">
+                        <i class="fas fa-shopping-cart" style="font-size: 2rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                        <p>No items in cart</p>
+                    </div>
+                </div>
+                
+                <div style="border-top: 1px solid var(--glass-border); padding-top: 1rem; margin-top: 1rem;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <span>Subtotal:</span>
+                        <span>$<span id="subtotal">0</span></span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <span>Shipping:</span>
+                        <span>$<span id="shipping-cost">10</span></span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <span>Tax:</span>
+                        <span>$<span id="tax">0</span></span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 1.2rem; color: var(--text-light); border-top: 1px solid var(--glass-border); padding-top: 0.5rem;">
+                        <span>Total:</span>
+                        <span>$<span id="grand-total">0</span></span>
+                    </div>
+                </div>
+
+                <!-- Security Badges -->
+                <div style="margin-top: 1.5rem; text-align: center;">
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 0.5rem; color: var(--text-secondary);">
+                        <i class="fas fa-shield-alt"></i>
+                        <small>256-bit SSL Secured</small>
+                    </div>
+                    <div style="display: flex; justify-content: center; gap: 0.5rem; font-size: 1.2rem; color: var(--text-secondary);">
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                        <i class="fab fa-cc-amex"></i>
+                        <i class="fab fa-paypal"></i>
+                        <i class="fab fa-apple-pay"></i>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>Caronexx Caroche © 2025. All rights reserved.</p>
+        <p>&copy; 2025 Caronexx Caroche. All rights reserved. | Crafted with <i class="fas fa-heart" style="color: #f5576c;"></i> for fashion lovers</p>
         <div class="social-links">
-            <a href="#" aria-label="Facebook">FB</a>
-            <a href="#" aria-label="Instagram">IG</a>
-            <a href="#" aria-label="TikTok">TT</a>
-            <a href="#" aria-label="WhatsApp">WA</a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         </div>
     </footer>
 

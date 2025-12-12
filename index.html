@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Caronexx Caroche - Fashion Brand</title>
-    <meta name="description" content="Discover elegant lingeries, men's briefs, corsets, and underwears at Caronexx Caroche. Modern fashion for every occasion.">
-    <meta name="keywords" content="lingeries, men's briefs, corsets, underwears, fashion, Caronexx Caroche">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Caronexx Caroche - Premium Fashion Brand</title>
+    <meta name="description" content="Discover elegant lingeries, men's briefs, corsets, and underwears at Caronexx Caroche. Premium fashion for every occasion with modern design and exceptional quality.">
+    <meta name="keywords" content="lingeries, men's briefs, corsets, underwears, fashion, premium, Caronexx Caroche, elegant, luxury">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -17,13 +17,13 @@
         </div>
         <nav>
             <ul class="menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#corsets">Corsets</a></li>
-                <li><a href="#lingeries">Lingeries</a></li>
-                <li><a href="#mens-briefs">Men’s Briefs</a></li>
-                <li><a href="#underwears">Underwears</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="cart.html">Cart</a></li>
+                <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#corsets"><i class="fas fa-gem"></i> Corsets</a></li>
+                <li><a href="#lingeries"><i class="fas fa-heart"></i> Lingeries</a></li>
+                <li><a href="#mens-briefs"><i class="fas fa-male"></i> Men's Briefs</a></li>
+                <li><a href="#underwears"><i class="fas fa-tshirt"></i> Underwears</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li><a href="cart.html"><i class="fas fa-shopping-cart"></i> Cart</a></li>
             </ul>
             <div class="hamburger">
                 <span></span>
@@ -34,143 +34,170 @@
     </header>
 
     <main>
-        <section id="carousel" class="carousel">
-            <!-- Carousel images will be added here -->
+        <!-- Hero Section -->
+        <section id="home" class="hero fade-in">
+            <h1>Elevate Your Style</h1>
+            <p>Discover premium fashion pieces that define elegance and sophistication. Every garment is crafted with attention to detail and designed for the modern individual.</p>
+            <a href="#corsets" class="cta-button">
+                <i class="fas fa-shopping-bag"></i> Shop Now
+            </a>
+        </section>
+
+        <!-- Modern Carousel -->
+        <section class="carousel">
             <div class="carousel-slide active">
-                <img src="placeholder1.jpg" alt="Product 1" loading="lazy">
+                <div style="background: var(--primary-gradient); display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-size: 2rem; font-weight: bold; text-align: center; padding: 2rem;">
+                    <div>
+                        <i class="fas fa-star" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                        <p>Premium Quality Fashion</p>
+                        <small>Experience luxury like never before</small>
+                    </div>
+                </div>
             </div>
             <div class="carousel-slide">
-                <img src="placeholder2.jpg" alt="Product 2" loading="lazy">
+                <div style="background: var(--secondary-gradient); display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-size: 2rem; font-weight: bold; text-align: center; padding: 2rem;">
+                    <div>
+                        <i class="fas fa-gem" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                        <p>Elegant Collections</p>
+                        <small>Timeless pieces for every occasion</small>
+                    </div>
+                </div>
             </div>
             <div class="carousel-slide">
-                <img src="placeholder3.jpg" alt="Product 3" loading="lazy">
-            </div>
-        </section>
-
-        <section id="corsets" class="product-section">
-            <h2>Corsets</h2>
-            <div class="product-grid">
-                <!-- Product items will be added here -->
-                <div class="product-card">
-                    <img src="corset1.jpg" alt="Corset 1" loading="lazy">
-                    <h3>Corset 1</h3>
-                    <p>$50</p>
-                    <button>Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img src="corset2.jpg" alt="Corset 2" loading="lazy">
-                    <h3>Corset 2</h3>
-                    <p>$55</p>
-                    <button>Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img src="corset3.jpg" alt="Corset 3" loading="lazy">
-                    <h3>Corset 3</h3>
-                    <p>$60</p>
-                    <button>Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img src="corset4.jpg" alt="Corset 4" loading="lazy">
-                    <h3>Corset 4</h3>
-                    <p>$65</p>
-                    <button>Add to Cart</button>
+                <div style="background: var(--accent-gradient); display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-size: 2rem; font-weight: bold; text-align: center; padding: 2rem;">
+                    <div>
+                        <i class="fas fa-heart" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                        <p>Comfort Meets Style</p>
+                        <small>Feel confident and beautiful</small>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="lingeries" class="product-section">
-            <h2>Lingeries</h2>
+        <!-- Product Sections -->
+        <section id="corsets" class="product-section slide-in-left">
+            <h2><i class="fas fa-gem"></i> Exquisite Corsets</h2>
             <div class="product-grid">
                 <div class="product-card">
-                    <img src="lingerie1.jpg" alt="Lingerie 1" loading="lazy">
-                    <h3>Lingerie 1</h3>
-                    <p>$40</p>
-                    <button>Add to Cart</button>
+                    <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=400&h=400&fit=crop" alt="Premium Corset 1" loading="lazy">
+                    <h3>Velvet Elegance</h3>
+                    <p>$89.99</p>
+                    <button><i class="fas fa-shopping-cart"></i> Add to Cart</button>
                 </div>
                 <div class="product-card">
-                    <img src="lingerie2.jpg" alt="Lingerie 2" loading="lazy">
-                    <h3>Lingerie 2</h3>
-                    <p>$45</p>
-                    <button>Add to Cart</button>
+                    <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=400&h=400&fit=crop" alt="Premium Corset 2" loading="lazy">
+                    <h3>Silk Noir</h3>
+                    <p>$95.99</p>
+                    <button><i class="fas fa-shopping-cart"></i> Add to Cart</button>
                 </div>
                 <div class="product-card">
-                    <img src="lingerie3.jpg" alt="Lingerie 3" loading="lazy">
-                    <h3>Lingerie 3</h3>
-                    <p>$50</p>
-                    <button>Add to Cart</button>
+                    <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=400&h=400&fit=crop" alt="Premium Corset 3" loading="lazy">
+                    <h3>Classic Pearl</h3>
+                    <p>$79.99</p>
+                    <button><i class="fas fa-shopping-cart"></i> Add to Cart</button>
                 </div>
                 <div class="product-card">
-                    <img src="lingerie4.jpg" alt="Lingerie 4" loading="lazy">
-                    <h3>Lingerie 4</h3>
-                    <p>$55</p>
-                    <button>Add to Cart</button>
+                    <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=400&h=400&fit=crop" alt="Premium Corset 4" loading="lazy">
+                    <h3>Midnight Lace</h3>
+                    <p>$92.99</p>
+                    <button><i class="fas fa-shopping-cart"></i> Add to Cart</button>
                 </div>
             </div>
         </section>
 
-        <section id="mens-briefs" class="product-section">
-            <h2>Men’s Briefs</h2>
+        <section id="lingeries" class="product-section slide-in-right">
+            <h2><i class="fas fa-heart"></i> Sensual Lingeries</h2>
             <div class="product-grid">
                 <div class="product-card">
-                    <img src="brief1.jpg" alt="Brief 1" loading="lazy">
-                    <h3>Brief 1</h3>
-                    <p>$20</p>
-                    <button>Add to Cart</button>
+                    <img src="https://images.unsplash.com/photo-1544957992-20349e670545?w=400&h=400&fit=crop" alt="Premium Lingerie 1" loading="lazy">
+                    <h3>Rose Garden Set</h3>
+                    <p>$65.99</p>
+                    <button><i class="fas fa-shopping-cart"></i> Add to Cart</button>
                 </div>
                 <div class="product-card">
-                    <img src="brief2.jpg" alt="Brief 2" loading="lazy">
-                    <h3>Brief 2</h3>
-                    <p>$25</p>
-                    <button>Add to Cart</button>
+                    <img src="https://images.unsplash.com/photo-1544957992-20349e670545?w=400&h=400&fit=crop" alt="Premium Lingerie 2" loading="lazy">
+                    <h3>Midnight Secrets</h3>
+                    <p>$72.99</p>
+                    <button><i class="fas fa-shopping-cart"></i> Add to Cart</button>
                 </div>
                 <div class="product-card">
-                    <img src="brief3.jpg" alt="Brief 3" loading="lazy">
-                    <h3>Brief 3</h3>
-                    <p>$30</p>
-                    <button>Add to Cart</button>
+                    <img src="https://images.unsplash.com/photo-1544957992-20349e670545?w=400&h=400&fit=crop" alt="Premium Lingerie 3" loading="lazy">
+                    <h3>French Elegance</h3>
+                    <p>$85.99</p>
+                    <button><i class="fas fa-shopping-cart"></i> Add to Cart</button>
                 </div>
                 <div class="product-card">
-                    <img src="brief4.jpg" alt="Brief 4" loading="lazy">
-                    <h3>Brief 4</h3>
-                    <p>$35</p>
-                    <button>Add to Cart</button>
+                    <img src="https://images.unsplash.com/photo-1544957992-20349e670545?w=400&h=400&fit=crop" alt="Premium Lingerie 4" loading="lazy">
+                    <h3>Velvet Touch</h3>
+                    <p>$78.99</p>
+                    <button><i class="fas fa-shopping-cart"></i> Add to Cart</button>
                 </div>
             </div>
         </section>
 
-        <section id="underwears" class="product-section">
-            <h2>Underwears</h2>
+        <section id="mens-briefs" class="product-section slide-in-left">
+            <h2><i class="fas fa-male"></i> Men's Essentials</h2>
             <div class="product-grid">
                 <div class="product-card">
-                    <img src="underwear1.jpg" alt="Underwear 1" loading="lazy">
-                    <h3>Underwear 1</h3>
-                    <p>$15</p>
-                    <button>Add to Cart</button>
+                    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop" alt="Men's Brief 1" loading="lazy">
+                    <h3>Classic Comfort</h3>
+                    <p>$29.99</p>
+                    <button><i class="fas fa-shopping-cart"></i> Add to Cart</button>
                 </div>
                 <div class="product-card">
-                    <img src="underwear2.jpg" alt="Underwear 2" loading="lazy">
-                    <h3>Underwear 2</h3>
-                    <p>$20</p>
-                    <button>Add to Cart</button>
+                    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop" alt="Men's Brief 2" loading="lazy">
+                    <h3>Premium Cotton</h3>
+                    <p>$34.99</p>
+                    <button><i class="fas fa-shopping-cart"></i> Add to Cart</button>
                 </div>
                 <div class="product-card">
-                    <img src="underwear3.jpg" alt="Underwear 3" loading="lazy">
-                    <h3>Underwear 3</h3>
-                    <p>$25</p>
-                    <button>Add to Cart</button>
+                    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop" alt="Men's Brief 3" loading="lazy">
+                    <h3>Sport Flex</h3>
+                    <p>$39.99</p>
+                    <button><i class="fas fa-shopping-cart"></i> Add to Cart</button>
                 </div>
                 <div class="product-card">
-                    <img src="underwear4.jpg" alt="Underwear 4" loading="lazy">
-                    <h3>Underwear 4</h3>
-                    <p>$30</p>
-                    <button>Add to Cart</button>
+                    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop" alt="Men's Brief 4" loading="lazy">
+                    <h3>Luxury Line</h3>
+                    <p>$45.99</p>
+                    <button><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="underwears" class="product-section slide-in-right">
+            <h2><i class="fas fa-tshirt"></i> Daily Comfort</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1566479179817-9e3a4fa2de70?w=400&h=400&fit=crop" alt="Underwear 1" loading="lazy">
+                    <h3>Breeze Cotton</h3>
+                    <p>$19.99</p>
+                    <button><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1566479179817-9e3a4fa2de70?w=400&h=400&fit=crop" alt="Underwear 2" loading="lazy">
+                    <h3>Seamless Fit</h3>
+                    <p>$24.99</p>
+                    <button><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1566479179817-9e3a4fa2de70?w=400&h=400&fit=crop" alt="Underwear 3" loading="lazy">
+                    <h3>Bamboo Soft</h3>
+                    <p>$27.99</p>
+                    <button><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1566479179817-9e3a4fa2de70?w=400&h=400&fit=crop" alt="Underwear 4" loading="lazy">
+                    <h3>Ultra Light</h3>
+                    <p>$32.99</p>
+                    <button><i class="fas fa-shopping-cart"></i> Add to Cart</button>
                 </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>Caronexx Caroche © 2025. All rights reserved.</p>
+        <p>&copy; 2025 Caronexx Caroche. All rights reserved. | Crafted with <i class="fas fa-heart" style="color: #f5576c;"></i> for fashion lovers</p>
         <div class="social-links">
             <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
             <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
