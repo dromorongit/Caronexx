@@ -191,24 +191,26 @@
         
         .payment-methods {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
         }
         
         .payment-option {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.5);
-            border: 2px solid var(--glass-border);
-            border-radius: 12px;
+            gap: 1.25rem;
+            padding: 2rem;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 100%);
+            border: 2px solid transparent;
+            border-radius: 16px;
             cursor: pointer;
-            transition: var(--transition);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
-            min-height: 80px;
+            min-height: 100px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.12);
         }
         
         .payment-option::before {
@@ -218,20 +220,40 @@
             left: 0;
             width: 4px;
             height: 100%;
-            background: var(--accent-gradient);
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             transform: scaleY(0);
-            transition: var(--transition);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .payment-option::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(79, 172, 254, 0.1) 0%, rgba(0, 242, 254, 0.1) 100%);
+            opacity: 0;
+            transition: all 0.4s ease;
+            border-radius: 16px;
         }
         
         .payment-option:hover {
-            background: rgba(255, 255, 255, 0.7);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-light);
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.8) 100%);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(31, 38, 135, 0.2);
+            border-color: rgba(79, 172, 254, 0.3);
+        }
+        
+        .payment-option:hover::after {
+            opacity: 1;
         }
         
         .payment-option.selected {
-            border-color: var(--accent-gradient);
-            background: rgba(79, 172, 254, 0.1);
+            border-color: #4facfe;
+            background: linear-gradient(145deg, rgba(79, 172, 254, 0.15) 0%, rgba(0, 242, 254, 0.1) 100%);
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 15px 30px rgba(79, 172, 254, 0.25);
         }
         
         .payment-option.selected::before {
@@ -239,34 +261,92 @@
         }
         
         .payment-option input[type="radio"] {
-            margin: 0;
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
         }
         
         .payment-icon {
-            font-size: 1.5rem;
-            color: var(--accent-gradient);
+            font-size: 2rem;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             flex-shrink: 0;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .payment-text {
+            flex: 1;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .payment-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+        
+        .payment-description {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.3;
+        }
+        
+        .payment-checkmark {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--glass-border);
+            border-radius: 50%;
+            background: white;
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+        
+        .payment-option.selected .payment-checkmark {
+            border-color: #4facfe;
+            background: #4facfe;
+        }
+        
+        .payment-option.selected .payment-checkmark::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
         }
         
         .shipping-options {
             display: grid;
-            gap: 1rem;
-            margin-top: 1rem;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
         }
         
         .shipping-option {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.5);
-            border: 2px solid var(--glass-border);
-            border-radius: 12px;
+            gap: 1.5rem;
+            padding: 2rem;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 100%);
+            border: 2px solid transparent;
+            border-radius: 16px;
             cursor: pointer;
-            transition: var(--transition);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
-            min-height: 80px;
+            min-height: 120px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.12);
         }
         
         .shipping-option::before {
@@ -276,47 +356,171 @@
             left: 0;
             width: 4px;
             height: 100%;
-            background: var(--secondary-gradient);
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             transform: scaleY(0);
-            transition: var(--transition);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .shipping-option::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(240, 147, 251, 0.1) 0%, rgba(245, 87, 108, 0.1) 100%);
+            opacity: 0;
+            transition: all 0.4s ease;
+            border-radius: 16px;
         }
         
         .shipping-option:hover {
-            background: rgba(255, 255, 255, 0.7);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-light);
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.8) 100%);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(240, 147, 251, 0.2);
+            border-color: rgba(240, 147, 251, 0.3);
+        }
+        
+        .shipping-option:hover::after {
+            opacity: 1;
         }
         
         .shipping-option.selected {
-            border-color: var(--secondary-gradient);
-            background: rgba(240, 147, 251, 0.1);
+            border-color: #f093fb;
+            background: linear-gradient(145deg, rgba(240, 147, 251, 0.15) 0%, rgba(245, 87, 108, 0.1) 100%);
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 15px 30px rgba(240, 147, 251, 0.25);
         }
         
         .shipping-option.selected::before {
             transform: scaleY(1);
         }
         
+        .shipping-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .shipping-icon {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            flex-shrink: 0;
+            z-index: 2;
+            position: relative;
+        }
+        
         .shipping-details {
             flex: 1;
+            z-index: 2;
+            position: relative;
         }
         
         .shipping-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
             flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .shipping-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
             gap: 0.5rem;
         }
         
         .shipping-price {
-            font-weight: 600;
-            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 1.3rem;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .shipping-description {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
         }
         
         .shipping-time {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             font-size: 0.9rem;
             color: var(--text-secondary);
+            background: rgba(240, 147, 251, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid rgba(240, 147, 251, 0.2);
+        }
+        
+        .shipping-time i {
+            color: #f093fb;
+        }
+        
+        .shipping-checkmark {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--glass-border);
+            border-radius: 50%;
+            background: white;
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+        
+        .shipping-option.selected .shipping-checkmark {
+            border-color: #f093fb;
+            background: #f093fb;
+        }
+        
+        .shipping-option.selected .shipping-checkmark::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .shipping-features {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.75rem;
+            flex-wrap: wrap;
+        }
+        
+        .shipping-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            background: rgba(255, 255, 255, 0.5);
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+        }
+        
+        .shipping-feature i {
+            color: #f093fb;
+            font-size: 0.7rem;
         }
         
         .credit-card-form {
@@ -330,31 +534,160 @@
         
         .submit-section {
             margin-top: 3rem;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 12px;
+            padding: 2.5rem;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 100%);
+            border-radius: 16px;
             text-align: center;
+            border: 2px solid transparent;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.12);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .submit-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 50%, #f093fb 100%);
+        }
+        
+        .terms-section {
+            margin-bottom: 2.5rem;
+            padding: 2rem;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.4) 100%);
+            border-radius: 12px;
             border: 1px solid var(--glass-border);
+            backdrop-filter: blur(5px);
+        }
+        
+        .terms-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .terms-title i {
+            font-size: 1.4rem;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .terms-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            cursor: pointer;
+            line-height: 1.6;
+            text-align: left;
+        }
+        
+        .terms-checkbox input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .terms-checkbox .checkbox-custom {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--glass-border);
+            border-radius: 6px;
+            background: white;
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            flex-shrink: 0;
+            margin-top: 2px;
+            box-shadow: 0 2px 8px rgba(31, 38, 135, 0.1);
+        }
+        
+        .terms-checkbox .checkbox-custom::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .terms-checkbox:hover .checkbox-custom {
+            border-color: #4facfe;
+            box-shadow: 0 4px 12px rgba(79, 172, 254, 0.2);
+            transform: scale(1.05);
+        }
+        
+        .terms-checkbox input[type="checkbox"]:checked + .checkbox-custom {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            border-color: #4facfe;
+            box-shadow: 0 4px 12px rgba(79, 172, 254, 0.3);
+        }
+        
+        .terms-checkbox input[type="checkbox"]:checked + .checkbox-custom::after {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        
+        .terms-text {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        .terms-text a {
+            color: #4facfe;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .terms-text a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            transition: width 0.3s ease;
+        }
+        
+        .terms-text a:hover::after {
+            width: 100%;
         }
         
         .submit-btn {
-            background: var(--accent-gradient);
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             color: white;
             border: none;
-            padding: 1.5rem 3rem;
+            padding: 1.75rem 3.5rem;
             border-radius: 50px;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.2px;
             cursor: pointer;
-            transition: var(--transition);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
             font-size: 1.1rem;
-            box-shadow: var(--shadow-light);
-            min-height: 60px;
+            box-shadow: 0 10px 30px rgba(79, 172, 254, 0.3);
+            min-height: 70px;
             width: 100%;
-            max-width: 400px;
+            max-width: 450px;
+            border: 2px solid transparent;
         }
         
         .submit-btn::before {
@@ -364,18 +697,70 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: var(--secondary-gradient);
-            transition: var(--transition);
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             z-index: -1;
+        }
+        
+        .submit-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
         
         .submit-btn:hover::before {
             left: 0;
         }
         
+        .submit-btn:hover::after {
+            opacity: 1;
+        }
+        
         .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-heavy);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(79, 172, 254, 0.4);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(-2px) scale(1.01);
+        }
+        
+        .submit-btn i {
+            margin-right: 0.75rem;
+            font-size: 1.2rem;
+        }
+        
+        .security-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(79, 172, 254, 0.1);
+            border-radius: 12px;
+            border: 1px solid rgba(79, 172, 254, 0.2);
+        }
+        
+        .security-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        
+        .security-item i {
+            color: #4facfe;
+            font-size: 1.1rem;
         }
         
         .order-summary-card {
@@ -527,17 +912,86 @@
             
             .payment-methods {
                 grid-template-columns: 1fr;
-                gap: 0.75rem;
+                gap: 1rem;
             }
             
             .payment-option {
-                padding: 1.25rem;
-                min-height: 70px;
+                padding: 1.5rem;
+                min-height: 85px;
+                gap: 1rem;
+            }
+            
+            .payment-icon {
+                font-size: 1.5rem;
+            }
+            
+            .payment-title {
+                font-size: 1rem;
+            }
+            
+            .payment-description {
+                font-size: 0.85rem;
             }
             
             .shipping-option {
+                padding: 1.5rem;
+                min-height: 100px;
+                gap: 1rem;
+            }
+            
+            .shipping-icon {
+                font-size: 1.5rem;
+            }
+            
+            .shipping-title {
+                font-size: 1.1rem;
+            }
+            
+            .shipping-description {
+                font-size: 0.9rem;
+            }
+            
+            .shipping-time {
+                font-size: 0.85rem;
+                padding: 0.4rem 0.8rem;
+            }
+            
+            .shipping-features {
+                gap: 0.5rem;
+            }
+            
+            .shipping-feature {
+                font-size: 0.75rem;
+                padding: 0.2rem 0.6rem;
+            }
+            
+            .submit-section {
+                padding: 2rem;
+            }
+            
+            .terms-section {
+                padding: 1.5rem;
+            }
+            
+            .terms-title {
+                font-size: 1.1rem;
+            }
+            
+            .terms-text {
+                font-size: 0.9rem;
+            }
+            
+            .submit-btn {
+                padding: 1.5rem 2.5rem;
+                font-size: 1rem;
+                min-height: 60px;
+                max-width: 100%;
+            }
+            
+            .security-info {
+                flex-direction: column;
+                gap: 1rem;
                 padding: 1.25rem;
-                min-height: 70px;
             }
             
             .steps-container {
@@ -584,13 +1038,6 @@
             .form-floating textarea {
                 padding: 1.25rem 1rem 0.5rem;
                 font-size: 16px; /* Prevents zoom on iOS */
-            }
-            
-            .submit-btn {
-                padding: 1.25rem 2rem;
-                font-size: 1rem;
-                min-height: 55px;
-                width: 100%;
             }
             
             .order-item {
@@ -802,23 +1249,39 @@
                         <div class="payment-methods">
                             <div class="payment-option" onclick="selectPayment('credit-card')">
                                 <input type="radio" name="payment" value="credit-card" id="credit-card">
+                                <div class="payment-checkmark"></div>
                                 <i class="fas fa-credit-card payment-icon"></i>
-                                <span>Credit/Debit Card</span>
+                                <div class="payment-text">
+                                    <div class="payment-title">Credit/Debit Card</div>
+                                    <div class="payment-description">Secure payment with Visa, Mastercard, or American Express</div>
+                                </div>
                             </div>
                             <div class="payment-option" onclick="selectPayment('mobile-money')">
                                 <input type="radio" name="payment" value="mobile-money" id="mobile-money">
+                                <div class="payment-checkmark"></div>
                                 <i class="fas fa-mobile-alt payment-icon"></i>
-                                <span>Mobile Money</span>
+                                <div class="payment-text">
+                                    <div class="payment-title">Mobile Money</div>
+                                    <div class="payment-description">Fast and convenient mobile payment solutions</div>
+                                </div>
                             </div>
                             <div class="payment-option" onclick="selectPayment('paypal')">
                                 <input type="radio" name="payment" value="paypal" id="paypal">
+                                <div class="payment-checkmark"></div>
                                 <i class="fab fa-paypal payment-icon"></i>
-                                <span>PayPal</span>
+                                <div class="payment-text">
+                                    <div class="payment-title">PayPal</div>
+                                    <div class="payment-description">Pay securely with your PayPal account</div>
+                                </div>
                             </div>
                             <div class="payment-option" onclick="selectPayment('cash')">
                                 <input type="radio" name="payment" value="cash" id="cash">
+                                <div class="payment-checkmark"></div>
                                 <i class="fas fa-money-bill payment-icon"></i>
-                                <span>Cash on Delivery</span>
+                                <div class="payment-text">
+                                    <div class="payment-title">Cash on Delivery</div>
+                                    <div class="payment-description">Pay with cash when your order is delivered</div>
+                                </div>
                             </div>
                         </div>
                         
@@ -850,32 +1313,101 @@
                         <div class="shipping-options">
                             <div class="shipping-option" onclick="selectShipping('standard')">
                                 <input type="radio" name="shipping" value="standard" id="shipping-standard" checked>
+                                <div class="shipping-checkmark"></div>
+                                <i class="fas fa-truck shipping-icon"></i>
                                 <div class="shipping-details">
                                     <div class="shipping-header">
-                                        <span><i class="fas fa-truck"></i> Standard Shipping</span>
-                                        <span class="shipping-price">₵0.00</span>
+                                        <div class="shipping-title">
+                                            <i class="fas fa-truck"></i>
+                                            Standard Shipping
+                                        </div>
+                                        <div class="shipping-price">₵0.00</div>
                                     </div>
-                                    <div class="shipping-time">5-7 business days</div>
+                                    <div class="shipping-description">Reliable and cost-effective delivery for your order</div>
+                                    <div class="shipping-time">
+                                        <i class="fas fa-clock"></i>
+                                        5-7 business days
+                                    </div>
+                                    <div class="shipping-features">
+                                        <div class="shipping-feature">
+                                            <i class="fas fa-check"></i>
+                                            Tracking Available
+                                        </div>
+                                        <div class="shipping-feature">
+                                            <i class="fas fa-shield-alt"></i>
+                                            Insured
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="shipping-option" onclick="selectShipping('express')">
                                 <input type="radio" name="shipping" value="express" id="shipping-express">
+                                <div class="shipping-checkmark"></div>
+                                <i class="fas fa-shipping-fast shipping-icon"></i>
                                 <div class="shipping-details">
                                     <div class="shipping-header">
-                                        <span><i class="fas fa-shipping-fast"></i> Express Shipping</span>
-                                        <span class="shipping-price">₵0.00</span>
+                                        <div class="shipping-title">
+                                            <i class="fas fa-shipping-fast"></i>
+                                            Express Shipping
+                                        </div>
+                                        <div class="shipping-price">₵0.00</div>
                                     </div>
-                                    <div class="shipping-time">2-3 business days</div>
+                                    <div class="shipping-description">Fast delivery when you need your items sooner</div>
+                                    <div class="shipping-time">
+                                        <i class="fas fa-clock"></i>
+                                        2-3 business days
+                                    </div>
+                                    <div class="shipping-features">
+                                        <div class="shipping-feature">
+                                            <i class="fas fa-check"></i>
+                                            Priority Handling
+                                        </div>
+                                        <div class="shipping-feature">
+                                            <i class="fas fa-shipping-fast"></i>
+                                            Express Tracking
+                                        </div>
+                                        <div class="shipping-feature">
+                                            <i class="fas fa-shield-alt"></i>
+                                            Insured
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="shipping-option" onclick="selectShipping('overnight')">
                                 <input type="radio" name="shipping" value="overnight" id="shipping-overnight">
+                                <div class="shipping-checkmark"></div>
+                                <i class="fas fa-rocket shipping-icon"></i>
                                 <div class="shipping-details">
                                     <div class="shipping-header">
-                                        <span><i class="fas fa-rocket"></i> Overnight Shipping</span>
-                                        <span class="shipping-price">₵0.00</span>
+                                        <div class="shipping-title">
+                                            <i class="fas fa-rocket"></i>
+                                            Overnight Shipping
+                                        </div>
+                                        <div class="shipping-price">₵0.00</div>
                                     </div>
-                                    <div class="shipping-time">Next business day</div>
+                                    <div class="shipping-description">Ultra-fast delivery for urgent orders</div>
+                                    <div class="shipping-time">
+                                        <i class="fas fa-clock"></i>
+                                        Next business day
+                                    </div>
+                                    <div class="shipping-features">
+                                        <div class="shipping-feature">
+                                            <i class="fas fa-rocket"></i>
+                                            Priority Processing
+                                        </div>
+                                        <div class="shipping-feature">
+                                            <i class="fas fa-bolt"></i>
+                                            24-Hour Delivery
+                                        </div>
+                                        <div class="shipping-feature">
+                                            <i class="fas fa-phone"></i>
+                                            SMS Updates
+                                        </div>
+                                        <div class="shipping-feature">
+                                            <i class="fas fa-shield-alt"></i>
+                                            Fully Insured
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -883,15 +1415,39 @@
 
                     <!-- Submit Section -->
                     <div class="submit-section">
-                        <div style="margin-bottom: 1.5rem;">
-                            <label style="display: flex; align-items: flex-start; gap: 0.5rem; cursor: pointer; line-height: 1.4;">
-                                <input type="checkbox" required style="margin: 0.125rem 0 0 0; flex-shrink: 0;">
-                                <span>I agree to the <a href="#" style="color: var(--accent-gradient); text-decoration: underline;">Terms and Conditions</a> and <a href="#" style="color: var(--accent-gradient); text-decoration: underline;">Privacy Policy</a></span>
+                        <div class="terms-section">
+                            <div class="terms-title">
+                                <i class="fas fa-shield-alt"></i>
+                                Terms & Conditions
+                            </div>
+                            <label class="terms-checkbox">
+                                <input type="checkbox" required>
+                                <div class="checkbox-custom"></div>
+                                <div class="terms-text">
+                                    I agree to the <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a>.
+                                    I understand that by placing this order, I am entering into a legally binding agreement.
+                                </div>
                             </label>
                         </div>
+                        
                         <button type="submit" class="submit-btn">
                             <i class="fas fa-lock"></i> Place Secure Order
                         </button>
+                        
+                        <div class="security-info">
+                            <div class="security-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>256-bit SSL Secured</span>
+                            </div>
+                            <div class="security-item">
+                                <i class="fas fa-lock"></i>
+                                <span>Safe & Secure</span>
+                            </div>
+                            <div class="security-item">
+                                <i class="fas fa-credit-card"></i>
+                                <span>Encrypted Payment</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -971,10 +1527,13 @@
             // Remove selected class from all options
             document.querySelectorAll('.payment-option').forEach(option => {
                 option.classList.remove('selected');
+                option.querySelector('input[type="radio"]').checked = false;
             });
             
-            // Add selected class to clicked option
-            event.currentTarget.classList.add('selected');
+            // Add selected class to clicked option and check the radio
+            const clickedOption = event.currentTarget;
+            clickedOption.classList.add('selected');
+            clickedOption.querySelector('input[type="radio"]').checked = true;
             
             // Show/hide credit card form
             const creditCardForm = document.getElementById('credit-card-form');
@@ -991,10 +1550,13 @@
             // Remove selected class from all options
             document.querySelectorAll('.shipping-option').forEach(option => {
                 option.classList.remove('selected');
+                option.querySelector('input[type="radio"]').checked = false;
             });
             
-            // Add selected class to clicked option
-            event.currentTarget.classList.add('selected');
+            // Add selected class to clicked option and check the radio
+            const clickedOption = event.currentTarget;
+            clickedOption.classList.add('selected');
+            clickedOption.querySelector('input[type="radio"]').checked = true;
             
             // Update shipping cost
             const shippingCosts = {
