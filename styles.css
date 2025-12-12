@@ -264,23 +264,6 @@ main {
     overflow: hidden;
 }
 
-.product-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--primary-gradient);
-    opacity: 0;
-    transition: var(--transition);
-    z-index: -1;
-}
-
-.product-card:hover::before {
-    opacity: 0.05;
-}
-
 .product-card:hover {
     transform: translateY(-10px) scale(1.02);
     box-shadow: var(--shadow-heavy);
@@ -294,6 +277,8 @@ main {
     border-radius: 12px;
     margin-bottom: 1.5rem;
     transition: var(--transition);
+    position: relative;
+    z-index: 1;
 }
 
 .product-card:hover img {
