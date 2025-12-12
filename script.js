@@ -252,52 +252,50 @@ function initCart() {
         loadCartItems();
     }
     
-    // Load cart items
+    // Load cart items - FIXED VERSION
     function loadCartItems() {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        const cartItemsContainer = document.getElementById('cart-items');
-        const cartSummary = document.getElementById('cart-summary');
+        const cartItemsList = document.getElementById('cart-items-list');
         
         if (cart.length === 0) {
-            // Show empty cart state
-            cartItemsContainer.innerHTML = `
-                <div class="empty-cart" style="text-align: center; padding: 3rem; color: var(--text-light);">
-                    <i class="fas fa-shopping-cart" style="font-size: 4rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+            // Cart is empty - show the existing empty state from HTML
+            cartItemsList.innerHTML = `
+                <div class="empty-cart">
+                    <div class="empty-cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
                     <h3>Your cart is empty</h3>
                     <p>Looks like you haven't added any items to your cart yet.</p>
-                    <a href="index.html" class="cta-button" style="margin-top: 1rem; display: inline-block;">
+                    <a href="index.html" class="btn-primary" style="margin-top: 2rem; display: inline-block;">
                         <i class="fas fa-arrow-left"></i> Continue Shopping
                     </a>
                 </div>
             `;
         } else {
-            // Hide empty cart and show summary
-            cartSummary.style.display = 'block';
-            
-            // Load cart items
-            const cartItemsList = document.getElementById('cart-items-list');
+            // Cart has items - display them
             cartItemsList.innerHTML = cart.map(item => `
                 <div class="cart-item">
-                    <div style="display: flex; align-items: center; gap: 1rem;">
-                        <img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px;">
-                        <div>
-                            <h4 style="margin: 0; color: var(--text-light);">${item.name}</h4>
-                            <p style="margin: 0; color: var(--text-secondary);">Quantity: ${item.quantity}</p>
-                        </div>
+                    <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                    <div class="cart-item-details">
+                        <h4 class="cart-item-name">${item.name}</h4>
+                        <p class="cart-item-price">₵${item.price.toFixed(2)}</p>
                     </div>
-                    <div style="display: flex; align-items: center; gap: 1rem;">
-                        <span style="color: var(--text-light); font-weight: bold;">₵${(item.price * item.quantity).toFixed(2)}</span>
-                        <button onclick="removeFromCart(${item.id})" style="background: rgba(255, 255, 255, 0.1); border: none; color: var(--text-light); padding: 0.5rem; border-radius: 50%; cursor: pointer;">
+                    <div class="cart-item-controls">
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
+                            <span class="quantity-display">${item.quantity}</span>
+                            <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                        </div>
+                        <button class="remove-btn" onclick="removeFromCart(${item.id})">
                             <i class="fas fa-trash"></i>
                         </button>
                     </div>
                 </div>
             `).join('');
-            
-            // Update totals
-            updateCartTotals();
         }
         
+        // Update totals
+        updateCartTotals();
         updateCartCount();
     }
     
@@ -305,13 +303,20 @@ function initCart() {
     function updateCartTotals() {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
         const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-        const shipping = subtotal > 75 ? 0 : 10;
-        const tax = subtotal * 0.08; // 8% tax
+        const shipping = subtotal > 900 ? 0 : 120; // Free shipping over ₵900
+        const tax = subtotal * 0.12; // 12.5% VAT
         const total = subtotal + shipping + tax;
         
-        document.getElementById('subtotal').textContent = subtotal.toFixed(2);
-        document.getElementById('shipping').textContent = shipping.toFixed(2);
-        document.getElementById('total').textContent = total.toFixed(2);
+        // Update cart page totals
+        const subtotalElement = document.getElementById('subtotal');
+        const shippingElement = document.getElementById('shipping');
+        const taxElement = document.getElementById('tax');
+        const totalElement = document.getElementById('total');
+        
+        if (subtotalElement) subtotalElement.textContent = subtotal.toFixed(2);
+        if (shippingElement) shippingElement.textContent = shipping.toFixed(2);
+        if (taxElement) taxElement.textContent = tax.toFixed(2);
+        if (totalElement) totalElement.textContent = total.toFixed(2);
         
         // Update checkout totals if on checkout page
         if (document.getElementById('grand-total')) {
@@ -321,6 +326,24 @@ function initCart() {
             document.getElementById('grand-total').textContent = total.toFixed(2);
         }
     }
+    
+    // Update quantity function
+    window.updateQuantity = function(itemId, change) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const item = cart.find(item => item.id === itemId);
+        
+        if (item) {
+            item.quantity += change;
+            if (item.quantity <= 0) {
+                // Remove item if quantity is 0 or less
+                cart = cart.filter(item => item.id !== itemId);
+            }
+            
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCartItems();
+            showNotification('Cart updated', 'info');
+        }
+    };
     
     // Remove from cart function
     window.removeFromCart = function(itemId) {
