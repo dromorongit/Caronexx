@@ -106,6 +106,62 @@ function updateCartCount() {
     }
 }
 
+// Global function to load cart items on checkout page
+function loadCheckoutItems() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const orderItemsContainer = document.getElementById('order-items');
+    
+    if (orderItemsContainer) {
+        if (cart.length === 0) {
+            // Show empty cart state
+            orderItemsContainer.innerHTML = `
+                <div style="text-align: center; padding: 2rem; color: var(--text-secondary);">
+                    <i class="fas fa-shopping-cart" style="font-size: 2rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                    <p>No items in cart</p>
+                    <a href="index.html" class="btn-primary" style="margin-top: 1rem; display: inline-block;">
+                        <i class="fas fa-arrow-left"></i> Continue Shopping
+                    </a>
+                </div>
+            `;
+        } else {
+            // Display cart items
+            orderItemsContainer.innerHTML = cart.map(item => `
+                <div class="order-item">
+                    <img src="${item.image}" alt="${item.name}" class="order-item-image">
+                    <div class="order-item-details">
+                        <div class="order-item-name">${item.name}</div>
+                        <div class="order-item-quantity">Quantity: ${item.quantity}</div>
+                    </div>
+                    <div class="order-item-price">₵${(item.price * item.quantity).toFixed(2)}</div>
+                </div>
+            `).join('');
+        }
+    }
+    
+    // Update checkout totals
+    updateCheckoutTotals();
+}
+
+// Global function to update checkout totals
+function updateCheckoutTotals() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+    const shipping = 0; // No shipping fees
+    const tax = 0; // No tax charged
+    const total = subtotal + shipping + tax;
+    
+    // Update checkout page totals
+    const subtotalElement = document.getElementById('subtotal');
+    const shippingElement = document.getElementById('shipping-cost');
+    const taxElement = document.getElementById('tax');
+    const totalElement = document.getElementById('grand-total');
+    
+    if (subtotalElement) subtotalElement.textContent = subtotal.toFixed(2);
+    if (shippingElement) shippingElement.textContent = shipping.toFixed(2);
+    if (taxElement) taxElement.textContent = tax.toFixed(2);
+    if (totalElement) totalElement.textContent = total.toFixed(2);
+}
+
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
     
@@ -275,6 +331,11 @@ function initCart() {
         loadCartItems();
     }
     
+    // Load checkout items on checkout page
+    if (window.location.pathname.includes('checkout.html')) {
+        loadCheckoutItems();
+    }
+    
     // Load cart items
     function loadCartItems() {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -363,7 +424,17 @@ function initCart() {
             }
             
             localStorage.setItem('cart', JSON.stringify(cart));
-            loadCartItems();
+            
+            // Reload cart items if on cart page
+            if (window.location.pathname.includes('cart.html')) {
+                loadCartItems();
+            }
+            
+            // Reload checkout items if on checkout page
+            if (window.location.pathname.includes('checkout.html')) {
+                loadCheckoutItems();
+            }
+            
             showNotification('Cart updated', 'info');
         }
     };
@@ -373,7 +444,17 @@ function initCart() {
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         cart = cart.filter(item => item.id !== itemId);
         localStorage.setItem('cart', JSON.stringify(cart));
-        loadCartItems();
+        
+        // Reload cart items if on cart page
+        if (window.location.pathname.includes('cart.html')) {
+            loadCartItems();
+        }
+        
+        // Reload checkout items if on checkout page
+        if (window.location.pathname.includes('checkout.html')) {
+            loadCheckoutItems();
+        }
+        
         showNotification('Item removed from cart', 'info');
     };
     
@@ -622,6 +703,7 @@ function initModernInteractions() {
             if (shippingCost) {
                 const costs = { standard: 0, express: 0, overnight: 0 }; // No shipping costs
                 shippingCost.textContent = costs[this.value];
+                updateCheckoutTotals(); // Recalculate totals
             }
         });
     });
