@@ -9,6 +9,512 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Enhanced Checkout Page Styles */
+        .checkout-hero {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .checkout-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(79, 172, 254, 0.1) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        .checkout-steps {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--glass-border);
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 800px;
+        }
+        
+        .steps-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .step.active {
+            background: var(--accent-gradient);
+            color: white;
+            box-shadow: var(--shadow-light);
+        }
+        
+        .step.completed {
+            background: var(--secondary-gradient);
+            color: white;
+            box-shadow: var(--shadow-light);
+        }
+        
+        .step.pending {
+            background: rgba(255, 255, 255, 0.3);
+            color: var(--text-secondary);
+            border: 1px solid var(--glass-border);
+        }
+        
+        .checkout-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .checkout-form-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow-medium);
+            overflow: hidden;
+        }
+        
+        .form-header {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .form-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--accent-gradient);
+        }
+        
+        .form-content {
+            padding: 2rem;
+        }
+        
+        .form-section {
+            margin-bottom: 3rem;
+        }
+        
+        .form-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .form-section h3 {
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .form-floating {
+            position: relative;
+        }
+        
+        .form-floating input,
+        .form-floating select,
+        .form-floating textarea {
+            width: 100%;
+            padding: 1.5rem 1rem 0.5rem;
+            border: 2px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-floating label {
+            position: absolute;
+            left: 1rem;
+            top: 1.5rem;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            pointer-events: none;
+            font-weight: 500;
+        }
+        
+        .form-floating input:focus,
+        .form-floating select:focus,
+        .form-floating textarea:focus {
+            border-color: var(--accent-gradient);
+            box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.1);
+            outline: none;
+        }
+        
+        .form-floating input:focus + label,
+        .form-floating select:focus + label,
+        .form-floating textarea:focus + label,
+        .form-floating input:not(:placeholder-shown) + label,
+        .form-floating select:not([value=""]) + label,
+        .form-floating textarea:not(:placeholder-shown) + label {
+            top: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--accent-gradient);
+            font-weight: 600;
+        }
+        
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .payment-option {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.5);
+            border: 2px solid var(--glass-border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .payment-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent-gradient);
+            transform: scaleY(0);
+            transition: var(--transition);
+        }
+        
+        .payment-option:hover {
+            background: rgba(255, 255, 255, 0.7);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-light);
+        }
+        
+        .payment-option.selected {
+            border-color: var(--accent-gradient);
+            background: rgba(79, 172, 254, 0.1);
+        }
+        
+        .payment-option.selected::before {
+            transform: scaleY(1);
+        }
+        
+        .payment-option input[type="radio"] {
+            margin: 0;
+        }
+        
+        .payment-icon {
+            font-size: 1.5rem;
+            color: var(--accent-gradient);
+        }
+        
+        .shipping-options {
+            display: grid;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .shipping-option {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.5);
+            border: 2px solid var(--glass-border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shipping-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--secondary-gradient);
+            transform: scaleY(0);
+            transition: var(--transition);
+        }
+        
+        .shipping-option:hover {
+            background: rgba(255, 255, 255, 0.7);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-light);
+        }
+        
+        .shipping-option.selected {
+            border-color: var(--secondary-gradient);
+            background: rgba(240, 147, 251, 0.1);
+        }
+        
+        .shipping-option.selected::before {
+            transform: scaleY(1);
+        }
+        
+        .shipping-details {
+            flex: 1;
+        }
+        
+        .shipping-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .shipping-price {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .shipping-time {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .credit-card-form {
+            display: none;
+            margin-top: 2rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+        }
+        
+        .submit-section {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid var(--glass-border);
+        }
+        
+        .submit-btn {
+            background: var(--accent-gradient);
+            color: white;
+            border: none;
+            padding: 1.5rem 3rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            font-size: 1.1rem;
+            box-shadow: var(--shadow-light);
+        }
+        
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--secondary-gradient);
+            transition: var(--transition);
+            z-index: -1;
+        }
+        
+        .submit-btn:hover::before {
+            left: 0;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-heavy);
+        }
+        
+        .order-summary-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow-medium);
+            overflow: hidden;
+            position: sticky;
+            top: 120px;
+            height: fit-content;
+        }
+        
+        .summary-header {
+            background: var(--secondary-gradient);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .summary-content {
+            padding: 2rem;
+        }
+        
+        .order-items {
+            margin-bottom: 2rem;
+        }
+        
+        .order-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border: 1px solid var(--glass-border);
+        }
+        
+        .order-item-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+        
+        .order-item-details {
+            flex: 1;
+        }
+        
+        .order-item-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+        
+        .order-item-quantity {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .order-item-price {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .summary-totals {
+            border-top: 1px solid var(--glass-border);
+            padding-top: 1.5rem;
+        }
+        
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+        
+        .total-row.final {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            border-top: 1px solid var(--glass-border);
+            padding-top: 0.75rem;
+            margin-top: 1rem;
+        }
+        
+        .security-badges {
+            margin-top: 2rem;
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(79, 172, 254, 0.1);
+            border-radius: 12px;
+            border: 1px solid rgba(79, 172, 254, 0.3);
+        }
+        
+        .security-text {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+        
+        .payment-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .payment-icon-badge {
+            width: 40px;
+            height: 25px;
+            background: white;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: var(--shadow-light);
+        }
+        
+        @media (max-width: 768px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .payment-methods {
+                grid-template-columns: 1fr;
+            }
+            
+            .steps-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -34,213 +540,255 @@
     </header>
 
     <main>
-        <!-- Hero Section for Checkout -->
-        <section class="hero fade-in">
+        <!-- Enhanced Hero Section -->
+        <section class="hero checkout-hero fade-in">
             <h1><i class="fas fa-credit-card"></i> Secure Checkout</h1>
-            <p>Complete your order with our secure and encrypted checkout process.</p>
+            <p>Complete your order with our secure and encrypted checkout process. Your satisfaction is our priority.</p>
+            <div style="display: flex; justify-content: center; gap: 2rem; margin-top: 2rem; flex-wrap: wrap;">
+                <div style="text-align: center;">
+                    <i class="fas fa-shield-alt" style="font-size: 2rem; color: #4facfe; margin-bottom: 0.5rem;"></i>
+                    <p style="margin: 0; font-weight: 600;">SSL Secured</p>
+                </div>
+                <div style="text-align: center;">
+                    <i class="fas fa-lock" style="font-size: 2rem; color: #4facfe; margin-bottom: 0.5rem;"></i>
+                    <p style="margin: 0; font-weight: 600;">256-bit Encryption</p>
+                </div>
+                <div style="text-align: center;">
+                    <i class="fas fa-credit-card" style="font-size: 2rem; color: #4facfe; margin-bottom: 0.5rem;"></i>
+                    <p style="margin: 0; font-weight: 600;">Safe Payments</p>
+                </div>
+            </div>
         </section>
 
-        <!-- Checkout Process Steps -->
-        <section class="checkout-steps fade-in" style="max-width: 800px; margin: 0 auto 2rem;">
-            <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem;">
-                <div style="display: flex; align-items: center; gap: 0.5rem; padding: 1rem; background: var(--accent-gradient); color: white; border-radius: 50px;">
+        <!-- Checkout Steps -->
+        <section class="checkout-steps fade-in">
+            <div class="steps-container">
+                <div class="step completed">
                     <i class="fas fa-shopping-cart"></i>
                     <span>Cart</span>
                 </div>
-                <div style="display: flex; align-items: center; gap: 0.5rem; padding: 1rem; background: var(--primary-gradient); color: white; border-radius: 50px;">
+                <div class="step active">
                     <i class="fas fa-credit-card"></i>
                     <span>Checkout</span>
                 </div>
-                <div style="display: flex; align-items: center; gap: 0.5rem; padding: 1rem; background: rgba(255, 255, 255, 0.1); color: var(--text-light); border-radius: 50px;">
+                <div class="step pending">
                     <i class="fas fa-check"></i>
                     <span>Complete</span>
                 </div>
             </div>
         </section>
 
-        <!-- Checkout Container -->
-        <section class="checkout-container fade-in">
+        <!-- Main Checkout Container -->
+        <div class="checkout-container">
             <!-- Checkout Form -->
-            <div class="checkout-form">
-                <h2><i class="fas fa-user-edit"></i> Shipping Information</h2>
-                <form action="#" method="post">
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                        <div class="form-group">
-                            <label for="first-name"><i class="fas fa-user"></i> First Name</label>
-                            <input type="text" id="first-name" name="first-name" required placeholder="Enter your first name">
-                        </div>
-                        <div class="form-group">
-                            <label for="last-name"><i class="fas fa-user"></i> Last Name</label>
-                            <input type="text" id="last-name" name="last-name" required placeholder="Enter your last name">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
-                        <input type="email" id="email" name="email" required placeholder="Enter your email address">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
-                        <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="address"><i class="fas fa-map-marker-alt"></i> Street Address</label>
-                        <input type="text" id="address" name="address" required placeholder="Enter your street address">
-                    </div>
-
-                    <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 1rem;">
-                        <div class="form-group">
-                            <label for="city"><i class="fas fa-city"></i> City</label>
-                            <input type="text" id="city" name="city" required placeholder="Enter your city">
-                        </div>
-                        <div class="form-group">
-                            <label for="state"><i class="fas fa-map"></i> State</label>
-                            <input type="text" id="state" name="state" required placeholder="State">
-                        </div>
-                        <div class="form-group">
-                            <label for="zip"><i class="fas fa-mail-bulk"></i> ZIP Code</label>
-                            <input type="text" id="zip" name="zip" required placeholder="ZIP">
-                        </div>
-                    </div>
-
-                    <h2 style="margin-top: 2rem;"><i class="fas fa-credit-card"></i> Payment Information</h2>
-                    
-                    <div class="form-group">
-                        <label><i class="fas fa-credit-card"></i> Payment Method</label>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-top: 0.5rem;">
-                            <label style="display: flex; align-items: center; gap: 0.5rem; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--glass-border); border-radius: 8px; cursor: pointer; transition: var(--transition);">
-                                <input type="radio" name="payment" value="credit-card" required style="margin: 0;">
-                                <i class="fas fa-credit-card"></i> Credit Card
-                            </label>
-                            <label style="display: flex; align-items: center; gap: 0.5rem; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--glass-border); border-radius: 8px; cursor: pointer; transition: var(--transition);">
-                                <input type="radio" name="payment" value="paypal" style="margin: 0;">
-                                <i class="fab fa-paypal"></i> PayPal
-                            </label>
-                            <label style="display: flex; align-items: center; gap: 0.5rem; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--glass-border); border-radius: 8px; cursor: pointer; transition: var(--transition);">
-                                <input type="radio" name="payment" value="apple-pay" style="margin: 0;">
-                                <i class="fab fa-apple-pay"></i> Apple Pay
-                            </label>
-                            <label style="display: flex; align-items: center; gap: 0.5rem; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--glass-border); border-radius: 8px; cursor: pointer; transition: var(--transition);">
-                                <input type="radio" name="payment" value="cash-on-delivery" style="margin: 0;">
-                                <i class="fas fa-money-bill"></i> Cash on Delivery
-                            </label>
-                        </div>
-                    </div>
-
-                    <div id="credit-card-form" style="display: none;">
-                        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1rem;">
-                            <div class="form-group">
-                                <label for="card-number"><i class="fas fa-credit-card"></i> Card Number</label>
-                                <input type="text" id="card-number" name="card-number" placeholder="1234 5678 9012 3456" maxlength="19">
+            <div class="checkout-form-section fade-in">
+                <div class="form-header">
+                    <h2><i class="fas fa-user-edit"></i> Complete Your Order</h2>
+                    <p>Please fill in your information to complete the purchase</p>
+                </div>
+                
+                <div class="form-content">
+                    <!-- Shipping Information -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-truck"></i> Shipping Information</h3>
+                        <div class="form-grid">
+                            <div class="form-floating">
+                                <input type="text" id="first-name" name="first-name" required placeholder=" ">
+                                <label for="first-name"><i class="fas fa-user"></i> First Name</label>
                             </div>
-                            <div class="form-group">
-                                <label for="cvv"><i class="fas fa-shield-alt"></i> CVV</label>
-                                <input type="text" id="cvv" name="cvv" placeholder="123" maxlength="4">
+                            <div class="form-floating">
+                                <input type="text" id="last-name" name="last-name" required placeholder=" ">
+                                <label for="last-name"><i class="fas fa-user"></i> Last Name</label>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="card-name"><i class="fas fa-user"></i> Name on Card</label>
-                            <input type="text" id="card-name" name="card-name" placeholder="Enter name as shown on card">
+                        
+                        <div class="form-floating" style="margin-top: 1.5rem;">
+                            <input type="email" id="email" name="email" required placeholder=" ">
+                            <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
+                        </div>
+                        
+                        <div class="form-floating" style="margin-top: 1.5rem;">
+                            <input type="tel" id="phone" name="phone" required placeholder=" ">
+                            <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
+                        </div>
+                        
+                        <div class="form-floating" style="margin-top: 1.5rem;">
+                            <input type="text" id="address" name="address" required placeholder=" ">
+                            <label for="address"><i class="fas fa-map-marker-alt"></i> Street Address</label>
+                        </div>
+                        
+                        <div class="form-grid" style="margin-top: 1.5rem;">
+                            <div class="form-floating">
+                                <input type="text" id="city" name="city" required placeholder=" ">
+                                <label for="city"><i class="fas fa-city"></i> City</label>
+                            </div>
+                            <div class="form-floating">
+                                <input type="text" id="region" name="region" required placeholder=" ">
+                                <label for="region"><i class="fas fa-map"></i> Region</label>
+                            </div>
+                            <div class="form-floating">
+                                <input type="text" id="postal" name="postal" required placeholder=" ">
+                                <label for="postal"><i class="fas fa-mail-bulk"></i> Postal Code</label>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label><i class="fas fa-truck"></i> Shipping Method</label>
-                        <div style="display: grid; gap: 0.5rem; margin-top: 0.5rem;">
-                            <label style="display: flex; align-items: center; gap: 0.5rem; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--glass-border); border-radius: 8px; cursor: pointer; transition: var(--transition);">
-                                <input type="radio" name="shipping" value="standard" checked style="margin: 0;">
-                                <div style="flex: 1;">
-                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <!-- Payment Information -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-credit-card"></i> Payment Method</h3>
+                        <div class="payment-methods">
+                            <div class="payment-option" onclick="selectPayment('credit-card')">
+                                <input type="radio" name="payment" value="credit-card" id="credit-card">
+                                <i class="fas fa-credit-card payment-icon"></i>
+                                <span>Credit/Debit Card</span>
+                            </div>
+                            <div class="payment-option" onclick="selectPayment('mobile-money')">
+                                <input type="radio" name="payment" value="mobile-money" id="mobile-money">
+                                <i class="fas fa-mobile-alt payment-icon"></i>
+                                <span>Mobile Money</span>
+                            </div>
+                            <div class="payment-option" onclick="selectPayment('paypal')">
+                                <input type="radio" name="payment" value="paypal" id="paypal">
+                                <i class="fab fa-paypal payment-icon"></i>
+                                <span>PayPal</span>
+                            </div>
+                            <div class="payment-option" onclick="selectPayment('cash')">
+                                <input type="radio" name="payment" value="cash" id="cash">
+                                <i class="fas fa-money-bill payment-icon"></i>
+                                <span>Cash on Delivery</span>
+                            </div>
+                        </div>
+                        
+                        <div class="credit-card-form" id="credit-card-form">
+                            <div class="form-grid">
+                                <div class="form-floating" style="grid-column: 1 / -1;">
+                                    <input type="text" id="card-number" name="card-number" placeholder=" " maxlength="19">
+                                    <label for="card-number"><i class="fas fa-credit-card"></i> Card Number</label>
+                                </div>
+                                <div class="form-floating">
+                                    <input type="text" id="expiry" name="expiry" placeholder=" " maxlength="5">
+                                    <label for="expiry"><i class="fas fa-calendar"></i> MM/YY</label>
+                                </div>
+                                <div class="form-floating">
+                                    <input type="text" id="cvv" name="cvv" placeholder=" " maxlength="4">
+                                    <label for="cvv"><i class="fas fa-shield-alt"></i> CVV</label>
+                                </div>
+                            </div>
+                            <div class="form-floating" style="margin-top: 1.5rem;">
+                                <input type="text" id="card-name" name="card-name" placeholder=" ">
+                                <label for="card-name"><i class="fas fa-user"></i> Name on Card</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Shipping Method -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-truck"></i> Shipping Method</h3>
+                        <div class="shipping-options">
+                            <div class="shipping-option" onclick="selectShipping('standard')">
+                                <input type="radio" name="shipping" value="standard" id="shipping-standard" checked>
+                                <div class="shipping-details">
+                                    <div class="shipping-header">
                                         <span><i class="fas fa-truck"></i> Standard Shipping</span>
-                                        <span>?10.00</span>
+                                        <span class="shipping-price">₵120.00</span>
                                     </div>
-                                    <small style="color: var(--text-secondary);">5-7 business days</small>
+                                    <div class="shipping-time">5-7 business days</div>
                                 </div>
-                            </label>
-                            <label style="display: flex; align-items: center; gap: 0.5rem; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--glass-border); border-radius: 8px; cursor: pointer; transition: var(--transition);">
-                                <input type="radio" name="shipping" value="express" style="margin: 0;">
-                                <div style="flex: 1;">
-                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                            </div>
+                            <div class="shipping-option" onclick="selectShipping('express')">
+                                <input type="radio" name="shipping" value="express" id="shipping-express">
+                                <div class="shipping-details">
+                                    <div class="shipping-header">
                                         <span><i class="fas fa-shipping-fast"></i> Express Shipping</span>
-                                        <span>?25.00</span>
+                                        <span class="shipping-price">₵300.00</span>
                                     </div>
-                                    <small style="color: var(--text-secondary);">2-3 business days</small>
+                                    <div class="shipping-time">2-3 business days</div>
                                 </div>
-                            </label>
-                            <label style="display: flex; align-items: center; gap: 0.5rem; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--glass-border); border-radius: 8px; cursor: pointer; transition: var(--transition);">
-                                <input type="radio" name="shipping" value="overnight" style="margin: 0;">
-                                <div style="flex: 1;">
-                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                            </div>
+                            <div class="shipping-option" onclick="selectShipping('overnight')">
+                                <input type="radio" name="shipping" value="overnight" id="shipping-overnight">
+                                <div class="shipping-details">
+                                    <div class="shipping-header">
                                         <span><i class="fas fa-rocket"></i> Overnight Shipping</span>
-                                        <span>?50.00</span>
+                                        <span class="shipping-price">₵600.00</span>
                                     </div>
-                                    <small style="color: var(--text-secondary);">Next business day</small>
+                                    <div class="shipping-time">Next business day</div>
                                 </div>
-                            </label>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label style="display: flex; align-items: center; gap: 0.5rem;">
-                            <input type="checkbox" required style="margin: 0;">
-                            <span>I agree to the <a href="#" style="color: #4facfe; text-decoration: underline;">Terms and Conditions</a> and <a href="#" style="color: #4facfe; text-decoration: underline;">Privacy Policy</a></span>
-                        </label>
+                    <!-- Submit Section -->
+                    <div class="submit-section">
+                        <div style="margin-bottom: 1.5rem;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="checkbox" required style="margin: 0;">
+                                <span>I agree to the <a href="#" style="color: var(--accent-gradient); text-decoration: underline;">Terms and Conditions</a> and <a href="#" style="color: var(--accent-gradient); text-decoration: underline;">Privacy Policy</a></span>
+                            </label>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-lock"></i> Place Secure Order
+                        </button>
                     </div>
-
-                    <button type="submit">
-                        <i class="fas fa-lock"></i> Place Secure Order
-                    </button>
-                </form>
+                </div>
             </div>
 
             <!-- Order Summary -->
-            <div class="order-summary">
-                <h3><i class="fas fa-clipboard-list"></i> Order Summary</h3>
-                <div id="order-items">
-                    <!-- Order items will be populated by JavaScript -->
-                    <div style="text-align: center; padding: 2rem; color: var(--text-secondary);">
-                        <i class="fas fa-shopping-cart" style="font-size: 2rem; margin-bottom: 1rem; opacity: 0.5;"></i>
-                        <p>No items in cart</p>
-                    </div>
+            <div class="order-summary-card fade-in">
+                <div class="summary-header">
+                    <h3><i class="fas fa-clipboard-list"></i> Order Summary</h3>
                 </div>
-                
-                <div style="border-top: 1px solid var(--glass-border); padding-top: 1rem; margin-top: 1rem;">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                        <span>Subtotal:</span>
-                        <span>?<span id="subtotal">0</span></span>
+                <div class="summary-content">
+                    <div class="order-items" id="order-items">
+                        <div style="text-align: center; padding: 2rem; color: var(--text-secondary);">
+                            <i class="fas fa-shopping-cart" style="font-size: 2rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                            <p>No items in cart</p>
+                        </div>
                     </div>
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                        <span>Shipping:</span>
-                        <span>?<span id="shipping-cost">10</span></span>
+                    
+                    <div class="summary-totals">
+                        <div class="total-row">
+                            <span>Subtotal:</span>
+                            <span>₵<span id="subtotal">0</span></span>
+                        </div>
+                        <div class="total-row">
+                            <span>Shipping:</span>
+                            <span>₵<span id="shipping-cost">120</span></span>
+                        </div>
+                        <div class="total-row">
+                            <span>Tax (12.5%):</span>
+                            <span>₵<span id="tax">0</span></span>
+                        </div>
+                        <div class="total-row final">
+                            <span>Total:</span>
+                            <span>₵<span id="grand-total">0</span></span>
+                        </div>
                     </div>
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                        <span>Tax:</span>
-                        <span>?<span id="tax">0</span></span>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 1.2rem; color: var(--text-light); border-top: 1px solid var(--glass-border); padding-top: 0.5rem;">
-                        <span>Total:</span>
-                        <span>?<span id="grand-total">0</span></span>
-                    </div>
-                </div>
 
-                <!-- Security Badges -->
-                <div style="margin-top: 1.5rem; text-align: center;">
-                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 0.5rem; color: var(--text-secondary);">
-                        <i class="fas fa-shield-alt"></i>
-                        <small>256-bit SSL Secured</small>
-                    </div>
-                    <div style="display: flex; justify-content: center; gap: 0.5rem; font-size: 1.2rem; color: var(--text-secondary);">
-                        <i class="fab fa-cc-visa"></i>
-                        <i class="fab fa-cc-mastercard"></i>
-                        <i class="fab fa-cc-amex"></i>
-                        <i class="fab fa-paypal"></i>
-                        <i class="fab fa-apple-pay"></i>
+                    <!-- Security Badges -->
+                    <div class="security-badges">
+                        <div class="security-text">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>256-bit SSL Secured</span>
+                        </div>
+                        <div class="payment-icons">
+                            <div class="payment-icon-badge">
+                                <i class="fab fa-cc-visa" style="color: #1a1f71;"></i>
+                            </div>
+                            <div class="payment-icon-badge">
+                                <i class="fab fa-cc-mastercard" style="color: #eb001b;"></i>
+                            </div>
+                            <div class="payment-icon-badge">
+                                <i class="fab fa-cc-amex" style="color: #006fcf;"></i>
+                            </div>
+                            <div class="payment-icon-badge">
+                                <i class="fab fa-paypal" style="color: #003087;"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
     </main>
 
     <footer>
@@ -254,5 +802,85 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // Payment method selection
+        function selectPayment(method) {
+            // Remove selected class from all options
+            document.querySelectorAll('.payment-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked option
+            event.currentTarget.classList.add('selected');
+            
+            // Show/hide credit card form
+            const creditCardForm = document.getElementById('credit-card-form');
+            if (method === 'credit-card') {
+                creditCardForm.style.display = 'block';
+                creditCardForm.style.animation = 'fadeIn 0.3s ease';
+            } else {
+                creditCardForm.style.display = 'none';
+            }
+        }
+        
+        // Shipping method selection
+        function selectShipping(method) {
+            // Remove selected class from all options
+            document.querySelectorAll('.shipping-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked option
+            event.currentTarget.classList.add('selected');
+            
+            // Update shipping cost
+            const shippingCosts = {
+                'standard': 120,
+                'express': 300,
+                'overnight': 600
+            };
+            
+            document.getElementById('shipping-cost').textContent = shippingCosts[method];
+        }
+        
+        // Initialize selections on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Select default payment method
+            document.querySelector('.payment-option').classList.add('selected');
+            
+            // Select default shipping method
+            document.querySelector('.shipping-option').classList.add('selected');
+            
+            // Floating label animations
+            const formInputs = document.querySelectorAll('.form-floating input, .form-floating textarea, .form-floating select');
+            
+            formInputs.forEach(input => {
+                // Check if input has value on load
+                if (input.value.trim() !== '') {
+                    const label = input.nextElementSibling;
+                    label.style.top = '0.5rem';
+                    label.style.fontSize = '0.8rem';
+                    label.style.color = 'var(--accent-gradient)';
+                    label.style.fontWeight = '600';
+                }
+                
+                // Add input event listener
+                input.addEventListener('input', function() {
+                    const label = this.nextElementSibling;
+                    if (this.value.trim() !== '') {
+                        label.style.top = '0.5rem';
+                        label.style.fontSize = '0.8rem';
+                        label.style.color = 'var(--accent-gradient)';
+                        label.style.fontWeight = '600';
+                    } else {
+                        label.style.top = '1.5rem';
+                        label.style.fontSize = '1rem';
+                        label.style.color = 'var(--text-secondary)';
+                        label.style.fontWeight = '400';
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

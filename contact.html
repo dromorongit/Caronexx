@@ -9,6 +9,356 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Additional Contact Page Styles */
+        .contact-hero {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(79, 172, 254, 0.1) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+        
+        .contact-form-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 3rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow-medium);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-form-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--accent-gradient);
+        }
+        
+        .contact-info-section {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .info-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow-light);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent-gradient);
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-heavy);
+        }
+        
+        .info-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--accent-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow-light);
+        }
+        
+        .info-card h3 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .info-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        .enhanced-form {
+            position: relative;
+        }
+        
+        .form-floating {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        
+        .form-floating input,
+        .form-floating textarea,
+        .form-floating select {
+            width: 100%;
+            padding: 1.5rem 1rem 0.5rem;
+            border: 2px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-floating label {
+            position: absolute;
+            left: 1rem;
+            top: 1.5rem;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            pointer-events: none;
+        }
+        
+        .form-floating input:focus,
+        .form-floating textarea:focus,
+        .form-floating select:focus {
+            border-color: var(--accent-gradient);
+            box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.1);
+            outline: none;
+        }
+        
+        .form-floating input:focus + label,
+        .form-floating textarea:focus + label,
+        .form-floating select:focus + label,
+        .form-floating input:not(:placeholder-shown) + label,
+        .form-floating textarea:not(:placeholder-shown) + label,
+        .form-floating select:not([value=""]) + label {
+            top: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--accent-gradient);
+            font-weight: 600;
+        }
+        
+        .submit-btn {
+            background: var(--accent-gradient);
+            color: white;
+            border: none;
+            padding: 1.2rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            font-size: 1rem;
+            box-shadow: var(--shadow-light);
+        }
+        
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--secondary-gradient);
+            transition: var(--transition);
+            z-index: -1;
+        }
+        
+        .submit-btn:hover::before {
+            left: 0;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-heavy);
+        }
+        
+        .faq-accordion {
+            margin-top: 4rem;
+        }
+        
+        .faq-item {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.5);
+            transition: var(--transition);
+        }
+        
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.7);
+        }
+        
+        .faq-question h3 {
+            margin: 0;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+        }
+        
+        .faq-icon {
+            color: var(--accent-gradient);
+            transition: var(--transition);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .faq-answer.active {
+            max-height: 200px;
+        }
+        
+        .faq-answer-content {
+            padding: 1.5rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        .social-connect {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--glass-border);
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        .social-connect h3 {
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+        
+        .social-grid {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        
+        .social-btn.facebook { background: #1877f2; }
+        .social-btn.instagram { background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); }
+        .social-btn.whatsapp { background: #25d366; }
+        .social-btn.tiktok { background: #000000; }
+        
+        .social-btn:hover {
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: var(--shadow-heavy);
+        }
+        
+        .map-section {
+            margin-top: 4rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--glass-border);
+            overflow: hidden;
+        }
+        
+        .map-placeholder {
+            height: 300px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .map-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2"/><circle cx="50" cy="50" r="20" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/><circle cx="50" cy="50" r="5" fill="white"/></svg>') center/contain no-repeat;
+        }
+        
+        @media (max-width: 768px) {
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .contact-form-section {
+                padding: 2rem;
+            }
+            
+            .info-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -34,100 +384,217 @@
     </header>
 
     <main>
-        <!-- Hero Section for Contact -->
-        <section class="hero fade-in">
-            <h1><i class="fas fa-envelope-open-text"></i> Get In Touch</h1>
-            <p>We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+        <!-- Enhanced Hero Section -->
+        <section class="hero contact-hero fade-in">
+            <h1><i class="fas fa-envelope-open-text"></i> Let's Connect</h1>
+            <p>We'd love to hear from you. Send us a message and we'll respond as soon as possible. Your satisfaction is our priority.</p>
+            <div style="display: flex; justify-content: center; gap: 2rem; margin-top: 2rem; flex-wrap: wrap;">
+                <div style="text-align: center;">
+                    <i class="fas fa-clock" style="font-size: 2rem; color: #4facfe; margin-bottom: 0.5rem;"></i>
+                    <p style="margin: 0; font-weight: 600;">24/7 Support</p>
+                </div>
+                <div style="text-align: center;">
+                    <i class="fas fa-reply" style="font-size: 2rem; color: #4facfe; margin-bottom: 0.5rem;"></i>
+                    <p style="margin: 0; font-weight: 600;">Quick Response</p>
+                </div>
+                <div style="text-align: center;">
+                    <i class="fas fa-heart" style="font-size: 2rem; color: #4facfe; margin-bottom: 0.5rem;"></i>
+                    <p style="margin: 0; font-weight: 600;">Personal Touch</p>
+                </div>
+            </div>
         </section>
 
-        <!-- Contact Form Section -->
-        <section class="contact-form fade-in">
-            <h2><i class="fas fa-comments"></i> Send Us a Message</h2>
-            <form action="#" method="post">
-                <div class="form-group">
-                    <label for="full-name"><i class="fas fa-user"></i> Full Name</label>
-                    <input type="text" id="full-name" name="full-name" required placeholder="Enter your full name">
-                </div>
-
-                <div class="form-group">
-                    <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
-                    <input type="email" id="email" name="email" required placeholder="Enter your email address">
-                </div>
-
-                <div class="form-group">
-                    <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
-                    <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
-                </div>
-
-                <div class="form-group">
-                    <label for="subject"><i class="fas fa-tag"></i> Subject</label>
-                    <select id="subject" name="subject" required>
-                        <option value="">Select a subject</option>
-                        <option value="product-inquiry">Product Inquiry</option>
-                        <option value="order-status">Order Status</option>
-                        <option value="size-guide">Size Guide</option>
-                        <option value="return-exchange">Return/Exchange</option>
-                        <option value="general">General Question</option>
-                        <option value="collaboration">Business Collaboration</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="message"><i class="fas fa-comment-alt"></i> Message</label>
-                    <textarea id="message" name="message" rows="6" required placeholder="Tell us how we can help you..."></textarea>
-                </div>
-
-                <button type="submit">
-                    <i class="fas fa-paper-plane"></i> Send Message
-                </button>
-            </form>
-        </section>
-
-        <!-- Contact Information Section -->
-        <section class="contact-info fade-in">
-            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-                <h2><i class="fas fa-info-circle"></i> Contact Information</h2>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
-                    <div class="product-card">
-                        <i class="fas fa-map-marker-alt" style="font-size: 2rem; color: #4facfe; margin-bottom: 1rem;"></i>
-                        <h3>Visit Our Store</h3>
-                        <p>123 Fashion Avenue<br>Design District<br>New York, NY 10001</p>
+        <!-- Main Contact Content -->
+        <section class="contact-content">
+            <!-- Contact Form -->
+            <div class="contact-form-section fade-in">
+                <h2 style="text-align: center; margin-bottom: 2rem; color: var(--text-primary);">
+                    <i class="fas fa-paper-plane"></i> Send Us a Message
+                </h2>
+                <form class="enhanced-form" action="#" method="post">
+                    <div class="form-floating">
+                        <input type="text" id="full-name" name="full-name" required placeholder=" ">
+                        <label for="full-name"><i class="fas fa-user"></i> Full Name</label>
                     </div>
-                    <div class="product-card">
-                        <i class="fas fa-phone-alt" style="font-size: 2rem; color: #4facfe; margin-bottom: 1rem;"></i>
-                        <h3>Call Us</h3>
-                        <p>+1 (555) 123-4567<br>Monday - Friday<br>9:00 AM - 6:00 PM EST</p>
+
+                    <div class="form-floating">
+                        <input type="email" id="email" name="email" required placeholder=" ">
+                        <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
                     </div>
-                    <div class="product-card">
-                        <i class="fas fa-envelope" style="font-size: 2rem; color: #4facfe; margin-bottom: 1rem;"></i>
-                        <h3>Email Us</h3>
-                        <p>info@caronexxcaroche.com<br>support@caronexxcaroche.com<br>We respond within 24 hours</p>
+
+                    <div class="form-floating">
+                        <input type="tel" id="phone" name="phone" required placeholder=" ">
+                        <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
                     </div>
+
+                    <div class="form-floating">
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a subject</option>
+                            <option value="product-inquiry">Product Inquiry</option>
+                            <option value="order-status">Order Status</option>
+                            <option value="size-guide">Size Guide</option>
+                            <option value="return-exchange">Return/Exchange</option>
+                            <option value="general">General Question</option>
+                            <option value="collaboration">Business Collaboration</option>
+                        </select>
+                        <label for="subject"><i class="fas fa-tag"></i> Subject</label>
+                    </div>
+
+                    <div class="form-floating">
+                        <textarea id="message" name="message" rows="5" required placeholder=" "></textarea>
+                        <label for="message"><i class="fas fa-comment-alt"></i> Message</label>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+            </div>
+
+ -->
+            <div            <!-- Contact Information class="contact-info-section">
+                <div class="info-card fade-in">
+                    <div class="info-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Visit Our Store</h3>
+                    <p>123 Fashion Avenue<br>Design District<br>Accra, Ghana</p>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--accent-gradient);">
+                        <i class="fas fa-clock"></i> Mon-Sat: 9AM-7PM | Sun: 11AM-5PM
+                    </p>
+                </div>
+
+                <div class="info-card fade-in">
+                    <div class="info-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3>Call Us</h3>
+                    <p>+233 24 123 4567<br>+233 24 987 6543</p>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--accent-gradient);">
+                        <i class="fas fa-clock"></i> Monday - Friday: 8AM-8PM
+                    </p>
+                </div>
+
+                <div class="info-card fade-in">
+                    <div class="info-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email Us</h3>
+                    <p>info@caronexxcaroche.com<br>support@caronexxcaroche.com</p>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--accent-gradient);">
+                        <i class="fas fa-reply"></i> We respond within 2 hours
+                    </p>
+                </div>
+
+                <div class="info-card fade-in">
+                    <div class="info-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3>WhatsApp Support</h3>
+                    <p>+233 24 123 4567</p>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--accent-gradient);">
+                        <i class="fas fa-comments"></i> Quick questions & immediate support
+                    </p>
                 </div>
             </div>
         </section>
 
         <!-- FAQ Section -->
-        <section class="faq-section fade-in">
+        <section class="faq-accordion fade-in">
+            <h2 style="text-align: center; margin-bottom: 3rem; color: var(--text-primary);">
+                <i class="fas fa-question-circle"></i> Frequently Asked Questions
+            </h2>
             <div style="max-width: 800px; margin: 0 auto;">
-                <h2 style="text-align: center; margin-bottom: 2rem;"><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
-                <div style="display: grid; gap: 1rem;">
-                    <div class="product-card" style="text-align: left;">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
                         <h3><i class="fas fa-shipping-fast"></i> What are your shipping options?</h3>
-                        <p>We offer standard shipping (5-7 business days), express shipping (2-3 business days), and overnight shipping. All orders over $75 qualify for free standard shipping.</p>
+                        <i class="fas fa-chevron-down faq-icon"></i>
                     </div>
-                    <div class="product-card" style="text-align: left;">
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We offer standard shipping (3-5 business days), express shipping (1-2 business days), and same-day delivery within Accra. All orders over ₵900 qualify for free standard shipping across Ghana.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
                         <h3><i class="fas fa-undo"></i> What is your return policy?</h3>
-                        <p>We offer a 30-day return policy for all items in original condition. Items must be unworn and have all original tags attached.</p>
+                        <i class="fas fa-chevron-down faq-icon"></i>
                     </div>
-                    <div class="product-card" style="text-align: left;">
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We offer a 30-day return policy for all items in original condition. Items must be unworn and have all original tags attached. Returns are free within Ghana.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
                         <h3><i class="fas fa-ruler-combined"></i> How do I find my size?</h3>
-                        <p>Each product page includes a detailed size guide. You can also contact us for personalized sizing assistance.</p>
+                        <i class="fas fa-chevron-down faq-icon"></i>
                     </div>
-                    <div class="product-card" style="text-align: left;">
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Each product page includes a detailed size guide. You can also contact us for personalized sizing assistance, or visit our store for professional fitting.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
                         <h3><i class="fas fa-credit-card"></i> What payment methods do you accept?</h3>
-                        <p>We accept all major credit cards (Visa, MasterCard, American Express), PayPal, and Apple Pay for secure transactions.</p>
+                        <i class="fas fa-chevron-down faq-icon"></i>
                     </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We accept all major credit cards (Visa, MasterCard, American Express), Mobile Money (MTN, Vodafone, AirtelTigo), PayPal, and cash on delivery for your convenience.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3><i class="fas fa-store"></i> Do you have physical stores?</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes! Visit our flagship store in Accra's Fashion District. We also partner with select retailers across Ghana for offline shopping experiences.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Media Connect -->
+        <section class="social-connect fade-in">
+            <h3><i class="fas fa-share-alt"></i> Connect With Us</h3>
+            <p style="margin-bottom: 2rem; color: var(--text-secondary);">Follow us on social media for the latest updates, style tips, and exclusive offers!</p>
+            <div class="social-grid">
+                <a href="#" class="social-btn facebook" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-btn instagram" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-btn whatsapp" aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="#" class="social-btn tiktok" aria-label="TikTok">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- Map Section -->
+        <section class="map-section fade-in">
+            <div class="map-placeholder">
+                <div>
+                    <i class="fas fa-map-marked-alt" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                    <h3>Find Us</h3>
+                    <p>123 Fashion Avenue, Design District<br>Accra, Ghana</p>
+                    <p style="margin-top: 1rem; font-size: 0.9rem;">Click to open in Google Maps</p>
                 </div>
             </div>
         </section>
@@ -144,5 +611,68 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // FAQ Accordion Functionality
+        function toggleFaq(element) {
+            const faqAnswer = element.nextElementSibling;
+            const faqIcon = element.querySelector('.faq-icon');
+            
+            // Close all other FAQs
+            document.querySelectorAll('.faq-answer').forEach(answer => {
+                if (answer !== faqAnswer) {
+                    answer.classList.remove('active');
+                }
+            });
+            
+            document.querySelectorAll('.faq-icon').forEach(icon => {
+                if (icon !== faqIcon) {
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            });
+            
+            // Toggle current FAQ
+            faqAnswer.classList.toggle('active');
+            
+            // Rotate icon
+            if (faqAnswer.classList.contains('active')) {
+                faqIcon.style.transform = 'rotate(180deg)';
+            } else {
+                faqIcon.style.transform = 'rotate(0deg)';
+            }
+        }
+        
+        // Enhanced form interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Floating label animation
+            const formInputs = document.querySelectorAll('.form-floating input, .form-floating textarea, .form-floating select');
+            
+            formInputs.forEach(input => {
+                // Check if input has value on load
+                if (input.value.trim() !== '') {
+                    const label = input.nextElementSibling;
+                    label.style.top = '0.5rem';
+                    label.style.fontSize = '0.8rem';
+                    label.style.color = 'var(--accent-gradient)';
+                    label.style.fontWeight = '600';
+                }
+                
+                // Add input event listener
+                input.addEventListener('input', function() {
+                    const label = this.nextElementSibling;
+                    if (this.value.trim() !== '') {
+                        label.style.top = '0.5rem';
+                        label.style.fontSize = '0.8rem';
+                        label.style.color = 'var(--accent-gradient)';
+                        label.style.fontWeight = '600';
+                    } else {
+                        label.style.top = '1.5rem';
+                        label.style.fontSize = '1rem';
+                        label.style.color = 'var(--text-secondary)';
+                        label.style.fontWeight = '400';
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
