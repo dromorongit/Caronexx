@@ -29,7 +29,7 @@ function initNavigation() {
             const spans = hamburger.querySelectorAll('span');
             spans.forEach((span, index) => {
                 span.style.transform = menu.classList.contains('active') 
-                    ? `rotate(${index === 1 ? 45 : index === 2 ? -45 : 0}deg) translate(${index === 0 ? '5px, 5px' : index === 1 ? '0, 0' : '-5px, 5px'})`
+                    ? `rotate(?{index === 1 ? 45 : index === 2 ? -45 : 0}deg) translate(?{index === 0 ? '5px, 5px' : index === 1 ? '0, 0' : '-5px, 5px'})`
                     : 'none';
             });
         });
@@ -168,7 +168,7 @@ function initCart() {
     function addToCart(button) {
         const card = button.closest('.product-card');
         const productName = card.querySelector('h3').textContent;
-        const productPrice = card.querySelector('p').textContent.replace('$', '');
+        const productPrice = card.querySelector('p').textContent.replace('?', '');
         const productImg = card.querySelector('img').src;
         
         // Create cart item
@@ -209,7 +209,7 @@ function initCart() {
         }, 2000);
         
         // Show success notification
-        showNotification(`${productName} added to cart!`, 'success');
+        showNotification(`?{productName} added to cart!`, 'success');
     }
     
     // Update cart count in navigation
@@ -279,15 +279,15 @@ function initCart() {
             cartItemsList.innerHTML = cart.map(item => `
                 <div class="cart-item">
                     <div style="display: flex; align-items: center; gap: 1rem;">
-                        <img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px;">
+                        <img src="?{item.image}" alt="?{item.name}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px;">
                         <div>
-                            <h4 style="margin: 0; color: var(--text-light);">${item.name}</h4>
-                            <p style="margin: 0; color: var(--text-secondary);">Quantity: ${item.quantity}</p>
+                            <h4 style="margin: 0; color: var(--text-light);">?{item.name}</h4>
+                            <p style="margin: 0; color: var(--text-secondary);">Quantity: ?{item.quantity}</p>
                         </div>
                     </div>
                     <div style="display: flex; align-items: center; gap: 1rem;">
-                        <span style="color: var(--text-light); font-weight: bold;">$${(item.price * item.quantity).toFixed(2)}</span>
-                        <button onclick="removeFromCart(${item.id})" style="background: rgba(255, 255, 255, 0.1); border: none; color: var(--text-light); padding: 0.5rem; border-radius: 50%; cursor: pointer;">
+                        <span style="color: var(--text-light); font-weight: bold;">??{(item.price * item.quantity).toFixed(2)}</span>
+                        <button onclick="removeFromCart(?{item.id})" style="background: rgba(255, 255, 255, 0.1); border: none; color: var(--text-light); padding: 0.5rem; border-radius: 50%; cursor: pointer;">
                             <i class="fas fa-trash"></i>
                         </button>
                     </div>
@@ -386,7 +386,7 @@ function validateField(field) {
     
     // Email validation
     if (field.type === 'email' && value) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+?/;
         if (!emailRegex.test(value)) {
             isValid = false;
             message = 'Please enter a valid email address';
@@ -395,7 +395,7 @@ function validateField(field) {
     
     // Phone validation
     if (field.type === 'tel' && value) {
-        const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+        const phoneRegex = /^[\+]?[1-9][\d]{0,15}?/;
         if (!phoneRegex.test(value.replace(/[\s\-\(\)]/g, ''))) {
             isValid = false;
             message = 'Please enter a valid phone number';
@@ -489,7 +489,7 @@ function initScrollEffects() {
         
         heroSections.forEach(hero => {
             const speed = 0.5;
-            hero.style.transform = `translateY(${scrollTop * speed}px)`;
+            hero.style.transform = `translateY(?{scrollTop * speed}px)`;
         });
     });
     
@@ -535,10 +535,10 @@ function initModernInteractions() {
                 background: rgba(255, 255, 255, 0.3);
                 transform: scale(0);
                 animation: ripple 0.6s linear;
-                width: ${size}px;
-                height: ${size}px;
-                left: ${x}px;
-                top: ${y}px;
+                width: ?{size}px;
+                height: ?{size}px;
+                left: ?{x}px;
+                top: ?{y}px;
                 pointer-events: none;
             `;
             
@@ -589,7 +589,7 @@ function showNotification(message, type = 'info') {
         top: 20px;
         right: 20px;
         padding: 1rem 1.5rem;
-        background: ${type === 'success' ? 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)' : 
+        background: ?{type === 'success' ? 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)' : 
                    type === 'error' ? 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)' : 
                    'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'};
         color: white;
@@ -603,8 +603,8 @@ function showNotification(message, type = 'info') {
     
     notification.innerHTML = `
         <div style="display: flex; align-items: center; gap: 0.5rem;">
-            <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
-            <span>${message}</span>
+            <i class="fas fa-?{type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+            <span>?{message}</span>
         </div>
     `;
     
